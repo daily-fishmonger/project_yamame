@@ -1,24 +1,17 @@
 # project_yamame
 
-## Project setup
+## 環境構築
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+$ mkdir workspace && cd workspace
+$ git clone git@github.com:shinonome-inc/project_yamame.git
+$ cd project_yamame
 ```
 
-### Compiles and minifies for production
+### コンテナの起動
 ```
-yarn build
+make run
 ```
+[localhost:8080](http://localhost:8080)にアクセスして起動しているかを確認する.
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
+### リファレンス
 See [Configuration Reference](https://cli.vuejs.org/config/).
