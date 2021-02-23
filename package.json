@@ -7,6 +7,13 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,vue}": "yarn lint",
+    "*.{html,css}": "prettier --write"
+  },
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
