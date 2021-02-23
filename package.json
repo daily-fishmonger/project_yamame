@@ -5,14 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint --no-fix",
+    "lint:fix": "vue-cli-service lint"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{ts,vue}": "yarn lint",
-    "*.{html,css}": "prettier --write"
+    "*.{ts,vue}": "yarn lint:fix"
   },
   "dependencies": {
     "core-js": "^3.6.5",

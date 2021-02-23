@@ -6,12 +6,12 @@ module.exports = {
     extends: [
       'plugin:@typescript-eslint/eslint-recommended',
       'plugin:@typescript-eslint/recommended',
-      "eslint:recommended",
-      "plugin:vue/vue3-recommended",
-      "@vue/typescript",
-      "plugin:prettier/recommended",
-      "prettier/vue",
-      "prettier/@typescript-eslint",
+      'eslint:recommended',
+      'plugin:vue/vue3-recommended',
+      '@vue/typescript',
+      'plugin:prettier/recommended',
+      'prettier/vue',
+      'prettier/@typescript-eslint',
     ],
     parserOptions: {
       parser: '@typescript-eslint/parser',
@@ -20,6 +20,13 @@ module.exports = {
     rules: {
       'quotes': ['warn', 'single'],
       'indent': ['warn', 2],
+      'prettier/prettier': [
+        'warn',
+        {
+          'singleQuote': true,
+          'trailingComma': 'es5'
+        }
+      ],
       '@typescript-eslint/interface-name-prefix': 'off',
       'sort-imports': 'off',
       'sort-keys': 'off',
