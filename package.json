@@ -12,7 +12,7 @@
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
-    "*.{ts,vue}": "yarn lint:fix"
+    "*.{css,ts,vue}": "yarn lint:fix"
   },
   "dependencies": {
     "core-js": "^3.6.5",
