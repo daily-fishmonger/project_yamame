@@ -12,7 +12,7 @@ jobs:
     # Job steps
     steps:
       - uses: actions/checkout@v1
-      - run: yarn
+      - run: yarn --frozen-lockfile
         #👇 Adds Chromatic as a step in the workflow
       - uses: nisshii0313/action@v2
         # Options required for Chromatic's GitHub Action
