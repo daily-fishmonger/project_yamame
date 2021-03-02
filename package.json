@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "dev": "vite",
+    "build": "vite build",
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
@@ -29,6 +29,7 @@
     "@storybook/vue3": "^6.2.0-alpha.20",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
+    "@vitejs/plugin-vue": "^1.1.5",
     "@vue/cli-plugin-babel": "^4.5.11",
     "@vue/cli-plugin-eslint": "^4.5.11",
     "@vue/cli-service": "^5.0.0-alpha.5",
@@ -43,7 +44,8 @@
     "eslint-plugin-vue": "^7.6.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "vite": "^2.0.4"
   },
   "eslintConfig": {
     "root": true,
