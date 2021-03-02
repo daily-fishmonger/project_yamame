@@ -1,4 +1,9 @@
 # project_yamame
+[![Chromatic](https://github.com/daily-fishmonger/project_yamame/actions/workflows/chromatic.yml/badge.svg)](https://github.com/daily-fishmonger/project_yamame/actions/workflows/chromatic.yml)
+[![Firebase Hosting](https://github.com/daily-fishmonger/project_yamame/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/daily-fishmonger/project_yamame/actions/workflows/firebase-hosting-merge.yml)
+
+## Site
+https://daily-fishmonger.web.app/
 
 ## 環境構築
 ```
