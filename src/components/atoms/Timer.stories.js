@@ -7,5 +7,5 @@ export default {
 
 export const Basic = () => ({
   components: { Timer },
-  template: '<timer @onClick="onClick" />',
+  template: "<timer />",
 });
