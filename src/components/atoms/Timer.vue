@@ -1,17 +1,35 @@
 <template>
-  <button type="button" @click="onClick">スタート</button>
   <div class="timer"><span class="fill"></span></div>
 </template>
 
 <script lang="ts">
 export default {
   name: 'Timer',
-
-  emits: ['onClick'],
+  data() {
+    return {
+      sec: 59,
+      timerOn: false,
+      timerObj: 0,
+    };
+  },
 
   methods: {
-    onClick(): void {
-      this.$emit('onClick');
+    count: function () {
+      if (this.sec <= 0) {
+        this.complete();
+      } else {
+        this.sec--;
+      }
+    },
+    // window: (onload = function () {
+    //   let self = this;
+    //   this.timerObj = window.setInterval(function () {
+    //     self.count();
+    //   }, 1000);
+    //   this.timerOn = true;
+    // }),
+    complete: function () {
+      clearInterval(this.timerObj);
     },
   },
 };
