@@ -4,16 +4,15 @@ import { Meta, Story } from '@storybook/vue3';
 export default {
   title: 'Atoms/TextButton',
   component: TextButton,
-  argTypes: {},
+  args: {
+    label: 'ボタンテキスト',
+  },
 } as Meta;
 
-const Template: Story = (_, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const Basic: Story = (args) => ({
   components: { TextButton },
-  template: '<text-button @onClick="onClick" v-bind="$props" />',
+  setup() {
+    return { args };
+  },
+  template: '<text-button @onClick="onClick" v-bind="args" />',
 });
-
-export const Normal = Template.bind({});
-Normal.args = {
-  label: 'ボタンテキスト',
-};
