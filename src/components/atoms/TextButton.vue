@@ -1,14 +1,18 @@
 <template>
-  <button :type="textButtonType" :class="classes" @click="onClick">
+  <button type="button" :class="classes" @click="onClick">
     {{ label }}
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, SetupContext } from 'vue';
 
 type Classes = {
   [key: string]: boolean;
+};
+
+type TextButtonProps = {
+  label: string;
 };
 
 export default defineComponent({
@@ -20,16 +24,19 @@ export default defineComponent({
     },
   },
   emits: ['onClick'],
+  setup(props: TextButtonProps, context: SetupContext) {
+    const onClick = () => {
+      context.emit('onClick');
+    };
+    return {
+      onClick,
+    };
+  },
   computed: {
     classes(): Classes {
       return {
         'text-btn': true,
       };
-    },
-  },
-  methods: {
-    onClick(): void {
-      this.$emit('onClick');
     },
   },
 });
