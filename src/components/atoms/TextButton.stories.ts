@@ -1,4 +1,4 @@
-import TextButton from '../components/atoms/TextButton.vue';
+import TextButton from './TextButton.vue';
 import { Meta, Story } from '@storybook/vue3';
 
 export default {
