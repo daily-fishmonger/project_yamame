@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 type Classes = {
   [key: string]: boolean;
@@ -17,14 +17,19 @@ export default defineComponent({
       default: false,
     },
   },
-  computed: {
-    classes(): Classes {
-      return {
-        'carousel-dot': true,
-        'carousel-dot--active': this.isActive,
-        'carousel-dot--inactive': !this.isActive,
-      };
-    },
+  setup(props) {
+    const classes = computed(
+      (): Classes => {
+        return {
+          'carousel-dot': true,
+          'carousel-dot--active': props.isActive,
+          'carousel-dot--inactive': !props.isActive,
+        };
+      }
+    );
+    return {
+      classes,
+    };
   },
 });
 </script>
