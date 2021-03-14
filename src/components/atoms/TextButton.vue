@@ -11,10 +11,6 @@ type Classes = {
   [key: string]: boolean;
 };
 
-type TextButtonProps = {
-  label: string;
-};
-
 export default defineComponent({
   name: 'TextButton',
   props: {
@@ -24,8 +20,8 @@ export default defineComponent({
     },
   },
   emits: ['onClick'],
-  setup(props: TextButtonProps, context: SetupContext) {
-    const onClick = () => {
+  setup(_, context: SetupContext) {
+    const onClick = (): void => {
       context.emit('onClick');
     };
     return {
