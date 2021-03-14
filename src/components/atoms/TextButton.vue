@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from 'vue';
+import { computed, defineComponent, SetupContext } from 'vue';
 
 type Classes = {
   [key: string]: boolean;
@@ -21,19 +21,20 @@ export default defineComponent({
   },
   emits: ['onClick'],
   setup(_, context: SetupContext) {
+    const classes = computed(
+      (): Classes => {
+        return {
+          'text-btn': true,
+        };
+      }
+    );
     const onClick = (): void => {
       context.emit('onClick');
     };
     return {
+      classes,
       onClick,
     };
-  },
-  computed: {
-    classes(): Classes {
-      return {
-        'text-btn': true,
-      };
-    },
   },
 });
 </script>
