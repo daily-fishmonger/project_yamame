@@ -1,36 +1,58 @@
+```vue
 <template>
-  <div class="timer"><span class="fill"></span></div>
+  <button v-if="!timerOn" @click="start">スタート</button>
+  <div class="timer">
+    <span
+      class="fill"
+      :style="{
+        backgroundImage: `conic-gradient(${circleColor} 0% ${percent}%, #fff ${percent}% 100%)`,
+      }"
+    ></span>
+  </div>
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
 export default {
   name: 'Timer',
-  data() {
-    return {
-      sec: 59,
-      timerOn: false,
-      timerObj: 0,
-    };
-  },
-
-  methods: {
-    count: function () {
-      if (this.sec <= 0) {
-        this.complete();
-      } else {
-        this.sec--;
+  setup() {
+    let sec = ref<number>(60);
+    let timerOn = ref<boolean>(false);
+    let timerObj = ref<number>(0);
+    let circleColor = ref<string>('#61C092');
+    let percent = ref<number>(100);
+    const count = (): void => {
+      sec.value--;
+      percent.value = (sec.value / 60) * 100;
+      if (percent.value <= 50 && percent.value > 25) {
+        circleColor.value = '#F0E25E';
+      } else if (percent.value <= 25) {
+        circleColor.value = '#E3635B';
       }
-    },
-    // window: (onload = function () {
-    //   let self = this;
-    //   this.timerObj = window.setInterval(function () {
-    //     self.count();
-    //   }, 1000);
-    //   this.timerOn = true;
-    // }),
-    complete: function () {
-      clearInterval(this.timerObj);
-    },
+
+      if (sec.value <= 0) {
+        complete();
+      }
+    };
+    const start = (): void => {
+      timerObj.value = window.setInterval(() => {
+        count();
+      }, 1000);
+      timerOn.value = true;
+    };
+    const complete = (): void => {
+      clearInterval(timerObj.value);
+    };
+    return {
+      sec,
+      timerOn,
+      timerObj,
+      circleColor,
+      percent,
+      count,
+      start,
+      complete,
+    };
   },
 };
 </script>
@@ -48,8 +70,9 @@ export default {
   border-radius: 50%;
   bottom: 7px;
   right: calc(50% - 20px);
-  background-image: conic-gradient(#d5525f 0% 25%, #fff 25% 100%);
   width: 40px;
   height: 40px;
 }
 </style>
+
+```
