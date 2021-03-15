@@ -7,12 +7,12 @@
   >
     <g clip-path="url(#clip0)">
       <path
-        d="M18.0781 8.38669L4.32813 0.257781C3.21094 -0.402375 1.5 0.23825 1.5 1.87106V18.125C1.5 19.5898 3.08984 20.4726 4.32813 19.7382L18.0781 11.6132C19.3047 10.8906 19.3086 9.10934 18.0781 8.38669Z"
+        d="M13.7909 10L19.4767 4.3142C20.1744 3.61648 20.1744 2.48523 19.4767 1.78693L18.2131 0.523295C17.5153 -0.174432 16.3841 -0.174432 15.6858 0.523295L10 6.20909L4.3142 0.523295C3.61648 -0.174432 2.48523 -0.174432 1.78693 0.523295L0.523295 1.78693C-0.174432 2.48466 -0.174432 3.61591 0.523295 4.3142L6.20909 10L0.523295 15.6858C-0.174432 16.3835 -0.174432 17.5148 0.523295 18.2131L1.78693 19.4767C2.48466 20.1744 3.61648 20.1744 4.3142 19.4767L10 13.7909L15.6858 19.4767C16.3835 20.1744 17.5153 20.1744 18.2131 19.4767L19.4767 18.2131C20.1744 17.5153 20.1744 16.3841 19.4767 15.6858L13.7909 10Z"
       />
     </g>
     <defs>
       <clipPath id="clip0">
-        <rect width="20" height="20" fill="white" />
+        <rect width="20" height="20" />
       </clipPath>
     </defs>
   </svg>
@@ -20,10 +20,10 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import { Size } from './story';
+import { Size } from '../story';
 
 export default defineComponent({
-  name: 'ResumeIcon',
+  name: 'CloseIcon',
 
   props: {
     label: {
@@ -45,9 +45,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-resume-icon--white': props.white,
-        'storybook-resume-icon--black': !props.white,
-        [`storybook-resume-icon--${props.size}`]: true,
+        'storybook-close-icon--white': props.white,
+        'storybook-close-icon--black': !props.white,
+        [`storybook-close-icon--${props.size}`]: true,
       };
     });
 
@@ -64,17 +64,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-resume-icon--black {
+.storybook-close-icon--black {
   fill: #000;
 }
-.storybook-resume-icon--white {
+.storybook-close-icon--white {
   fill: #fff;
 }
-.storybook-resume-icon--small {
+.storybook-close-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-resume-icon--medium {
+.storybook-close-icon--medium {
   width: 20px;
   height: 20px;
 }
