@@ -1,5 +1,4 @@
 <template>
-  <button v-if="!timerOn" @click="start">スタート</button>
   <div class="timer">
     <span
       class="fill"
@@ -33,7 +32,7 @@ export default {
         complete();
       }
     };
-    const start = (): void => {
+    window.onload = (): void => {
       timerObj.value = window.setInterval(() => {
         count();
       }, 1000);
@@ -49,7 +48,6 @@ export default {
       circleColor,
       percent,
       count,
-      start,
       complete,
     };
   },
