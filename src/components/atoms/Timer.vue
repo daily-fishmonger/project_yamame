@@ -1,4 +1,3 @@
-```vue
 <template>
   <button v-if="!timerOn" @click="start">スタート</button>
   <div class="timer">
@@ -74,5 +73,3 @@ export default {
   height: 40px;
 }
 </style>
-
-```
