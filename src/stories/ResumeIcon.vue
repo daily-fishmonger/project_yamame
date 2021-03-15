@@ -20,7 +20,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import './resume-icon.css';
 import { Size } from './story';
 
 export default defineComponent({
@@ -63,3 +62,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.storybook-resume-icon--black {
+  fill: #000;
+}
+.storybook-resume-icon--white {
+  fill: #fff;
+}
+.storybook-resume-icon--small {
+  width: 14px;
+  height: 14px;
+}
+.storybook-resume-icon--medium {
+  width: 20px;
+  height: 20px;
+}
+</style>

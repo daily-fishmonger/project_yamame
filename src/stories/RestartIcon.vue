@@ -13,7 +13,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import './restart-icon.css';
 import { Size } from './story';
 
 export default defineComponent({
@@ -56,3 +55,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.storybook-restart-icon--black {
+  fill: #000;
+}
+.storybook-restart-icon--white {
+  fill: #fff;
+}
+.storybook-restart-icon--small {
+  width: 14px;
+  height: 14px;
+}
+.storybook-restart-icon--medium {
+  width: 20px;
+  height: 20px;
+}
+</style>

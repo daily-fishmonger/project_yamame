@@ -10,7 +10,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import './home-icon.css';
 import { Size } from './story';
 
 export default defineComponent({
@@ -53,3 +52,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.storybook-home-icon--black {
+  fill: #000;
+}
+.storybook-home-icon--white {
+  fill: #fff;
+}
+.storybook-home-icon--small {
+  width: 14px;
+  height: 14px;
+}
+.storybook-home-icon--medium {
+  width: 20px;
+  height: 20px;
+}
+</style>

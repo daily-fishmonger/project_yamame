@@ -13,7 +13,6 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import './pause-icon.css';
 import { Size } from './story';
 
 export default defineComponent({
@@ -56,3 +55,20 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.storybook-pause-icon--black {
+  fill: #000;
+}
+.storybook-pause-icon--white {
+  fill: #fff;
+}
+.storybook-pause-icon--small {
+  width: 14px;
+  height: 14px;
+}
+.storybook-pause-icon--medium {
+  width: 20px;
+  height: 20px;
+}
+</style>
