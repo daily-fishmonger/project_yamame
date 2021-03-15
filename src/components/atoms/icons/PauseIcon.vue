@@ -38,9 +38,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-pause-icon--white': props.white,
-        'storybook-pause-icon--black': !props.white,
-        [`storybook-pause-icon--${props.size}`]: true,
+        'pause-icon--white': props.white,
+        'pause-icon--black': !props.white,
+        [`pause-icon--${props.size}`]: true,
       };
     });
 
@@ -57,17 +57,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-pause-icon--black {
+.pause-icon--black {
   fill: #000;
 }
-.storybook-pause-icon--white {
+.pause-icon--white {
   fill: #fff;
 }
-.storybook-pause-icon--small {
+.pause-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-pause-icon--medium {
+.pause-icon--medium {
   width: 20px;
   height: 20px;
 }

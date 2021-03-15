@@ -38,9 +38,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-restart-icon--white': props.white,
-        'storybook-restart-icon--black': !props.white,
-        [`storybook-restart-icon--${props.size}`]: true,
+        'restart-icon--white': props.white,
+        'restart-icon--black': !props.white,
+        [`restart-icon--${props.size}`]: true,
       };
     });
 
@@ -57,17 +57,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-restart-icon--black {
+.restart-icon--black {
   fill: #000;
 }
-.storybook-restart-icon--white {
+.restart-icon--white {
   fill: #fff;
 }
-.storybook-restart-icon--small {
+.restart-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-restart-icon--medium {
+.restart-icon--medium {
   width: 20px;
   height: 20px;
 }

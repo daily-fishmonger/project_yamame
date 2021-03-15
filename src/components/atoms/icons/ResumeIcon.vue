@@ -45,9 +45,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-resume-icon--white': props.white,
-        'storybook-resume-icon--black': !props.white,
-        [`storybook-resume-icon--${props.size}`]: true,
+        'resume-icon--white': props.white,
+        'resume-icon--black': !props.white,
+        [`resume-icon--${props.size}`]: true,
       };
     });
 
@@ -64,17 +64,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-resume-icon--black {
+.resume-icon--black {
   fill: #000;
 }
-.storybook-resume-icon--white {
+.resume-icon--white {
   fill: #fff;
 }
-.storybook-resume-icon--small {
+.resume-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-resume-icon--medium {
+.resume-icon--medium {
   width: 20px;
   height: 20px;
 }

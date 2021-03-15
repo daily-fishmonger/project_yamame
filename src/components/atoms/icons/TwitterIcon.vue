@@ -38,9 +38,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-twitter-icon--white': props.white,
-        'storybook-twitter-icon--black': !props.white,
-        [`storybook-twitter-icon--${props.size}`]: true,
+        'twitter-icon--white': props.white,
+        'twitter-icon--black': !props.white,
+        [`twitter-icon--${props.size}`]: true,
       };
     });
 
@@ -57,17 +57,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-twitter-icon--black {
+.twitter-icon--black {
   fill: #000;
 }
-.storybook-twitter-icon--white {
+.twitter-icon--white {
   fill: #fff;
 }
-.storybook-twitter-icon--small {
+.twitter-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-twitter-icon--medium {
+.twitter-icon--medium {
   width: 20px;
   height: 20px;
 }

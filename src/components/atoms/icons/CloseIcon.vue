@@ -45,9 +45,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-close-icon--white': props.white,
-        'storybook-close-icon--black': !props.white,
-        [`storybook-close-icon--${props.size}`]: true,
+        'close-icon--white': props.white,
+        'close-icon--black': !props.white,
+        [`close-icon--${props.size}`]: true,
       };
     });
 
@@ -64,17 +64,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-close-icon--black {
+.close-icon--black {
   fill: #000;
 }
-.storybook-close-icon--white {
+.close-icon--white {
   fill: #fff;
 }
-.storybook-close-icon--small {
+.close-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-close-icon--medium {
+.close-icon--medium {
   width: 20px;
   height: 20px;
 }

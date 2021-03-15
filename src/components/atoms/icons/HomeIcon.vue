@@ -35,9 +35,9 @@ export default defineComponent({
   setup(props, context: SetupContext) {
     const classes = computed(() => {
       return {
-        'storybook-home-icon--white': props.white,
-        'storybook-home-icon--black': !props.white,
-        [`storybook-home-icon--${props.size}`]: true,
+        'home-icon--white': props.white,
+        'home-icon--black': !props.white,
+        [`home-icon--${props.size}`]: true,
       };
     });
 
@@ -54,17 +54,17 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.storybook-home-icon--black {
+.home-icon--black {
   fill: #000;
 }
-.storybook-home-icon--white {
+.home-icon--white {
   fill: #fff;
 }
-.storybook-home-icon--small {
+.home-icon--small {
   width: 14px;
   height: 14px;
 }
-.storybook-home-icon--medium {
+.home-icon--medium {
   width: 20px;
   height: 20px;
 }
