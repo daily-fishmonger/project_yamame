@@ -26,15 +26,13 @@ export default {
     let timerOn = ref<boolean>(false);
     let timerObj = ref<number>(0);
     let circleColor = ref<string>('#61C092');
-    let percent = ref<number>(100);
     let deg = ref<number>(0);
     const count = (): void => {
       sec.value--;
       deg.value = (sec.value / 60) * 360;
-      percent.value = deg.value * 100;
-      if (percent.value <= 50 && percent.value > 25) {
+      if (deg.value <= 180 && deg.value > 90) {
         circleColor.value = '#F0E25E';
-      } else if (percent.value <= 25) {
+      } else if (deg.value <= 90) {
         circleColor.value = '#E3635B';
       }
 
@@ -56,7 +54,6 @@ export default {
       timerOn,
       timerObj,
       circleColor,
-      percent,
       count,
       deg,
       complete,
