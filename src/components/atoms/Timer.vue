@@ -3,9 +3,17 @@
     <span
       class="fill"
       :style="{
-        backgroundImage: `conic-gradient(${circleColor} 0% ${percent}%, #fff ${percent}% 100%)`,
+        backgroundImage: `conic-gradient(${circleColor} 0deg ${deg}deg, #fff ${deg}deg 360deg)`,
       }"
     ></span>
+    <img
+      src="../../assets/svg/hand.svg"
+      alt="hand"
+      class="hand"
+      :style="{
+        transform: `rotate(${deg}deg)`,
+      }"
+    />
   </div>
 </template>
 
@@ -19,9 +27,11 @@ export default {
     let timerObj = ref<number>(0);
     let circleColor = ref<string>('#61C092');
     let percent = ref<number>(100);
+    let deg = ref<number>(0);
     const count = (): void => {
       sec.value--;
-      percent.value = (sec.value / 60) * 100;
+      deg.value = (sec.value / 60) * 360;
+      percent.value = deg.value * 100;
       if (percent.value <= 50 && percent.value > 25) {
         circleColor.value = '#F0E25E';
       } else if (percent.value <= 25) {
@@ -48,6 +58,7 @@ export default {
       circleColor,
       percent,
       count,
+      deg,
       complete,
     };
   },
@@ -58,7 +69,7 @@ export default {
 .timer {
   width: 54px;
   height: 65px;
-  background-image: url('../../assets/img/timer.svg');
+  background-image: url('../../assets/svg/timer.svg');
   position: relative;
 }
 
@@ -69,5 +80,13 @@ export default {
   right: calc(50% - 20px);
   width: 40px;
   height: 40px;
+}
+
+.hand {
+  position: absolute;
+  bottom: calc(50% - 6px);
+  right: calc(50% - 3px);
+  transform-origin: bottom;
+  height: 21px;
 }
 </style>
