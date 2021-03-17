@@ -7,7 +7,7 @@
       }"
     ></span>
     <img
-      src="../../assets/svg/hand.svg"
+      src="../../../assets/svg/hand.svg"
       alt="hand"
       class="hand"
       :style="{
@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
-export default {
+import { ref, defineComponent } from 'vue';
+export default defineComponent({
   name: 'Timer',
   setup() {
     let sec = ref<number>(60);
@@ -59,14 +59,14 @@ export default {
       complete,
     };
   },
-};
+});
 </script>
 
 <style>
 .timer {
   width: 54px;
   height: 65px;
-  background-image: url('../../assets/svg/timer.svg');
+  background-image: url('../../../assets/svg/timer.svg');
   position: relative;
 }
 
