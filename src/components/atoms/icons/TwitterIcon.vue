@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import { Size } from '../story';
+import { Size } from '@/components/story';
 
 export default defineComponent({
   name: 'TwitterIcon',
