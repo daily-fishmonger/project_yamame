@@ -20,14 +20,14 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import { Size } from '@/components/story';
+import { Props } from '@/components/story';
 
 export default defineComponent({
   name: 'CloseIcon',
 
   props: {
     label: {
-      type: String,
+      type: String as PropType<Props['label']>,
       required: true,
     },
     white: {
@@ -35,7 +35,7 @@ export default defineComponent({
       default: false,
     },
     size: {
-      type: String as PropType<Size>,
+      type: String as PropType<Props['size']>,
       default: 'medium',
     },
   },
