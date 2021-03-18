@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, onMounted } from 'vue';
 export default defineComponent({
   name: 'Timer',
   setup() {
@@ -40,12 +40,12 @@ export default defineComponent({
         complete();
       }
     };
-    window.onload = (): void => {
+    onMounted((): void => {
       timerObj.value = window.setInterval(() => {
         count();
       }, 1000);
       timerOn.value = true;
-    };
+    });
     const complete = (): void => {
       clearInterval(timerObj.value);
     };
