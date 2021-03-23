@@ -4,6 +4,9 @@ import { Meta, Story } from '@storybook/vue3';
 export default {
   title: 'Atoms/IconButton',
   component: IconButton,
+  args: {
+    iconType: 'close',
+  },
   argTypes: {
     size: {
       control: {
@@ -15,6 +18,12 @@ export default {
       control: {
         type: 'select',
         options: ['primary', 'secondary', 'orange'],
+      },
+    },
+    iconType: {
+      control: {
+        type: 'select',
+        options: ['close', 'home', 'pause', 'restart', 'resume', 'twitter'],
       },
     },
   },
@@ -52,3 +61,15 @@ export const Orange = Basic.bind({});
 Orange.args = {
   color: 'orange',
 };
+
+export const IconList: Story = (args) => ({
+  components: { IconButton },
+  setup() {
+    return { args };
+  },
+  template: `
+  <div v-for="icon in ['close', 'home', 'pause', 'restart', 'resume', 'twitter']">
+    <icon-button @onClick="onClick" v-bind="args" :iconType="icon"/>
+  </div>
+  `,
+});
