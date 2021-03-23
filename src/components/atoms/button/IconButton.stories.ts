@@ -1,6 +1,6 @@
 import IconButton from './IconButton.vue';
 import { Meta, Story } from '@storybook/vue3';
-import { IconButtonColor, IconType, Size } from '../story';
+import { IconButtonColor, IconType, Size } from '../../story';
 
 export default {
   title: 'Atoms/IconButton',

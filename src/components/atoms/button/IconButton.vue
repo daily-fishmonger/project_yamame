@@ -17,7 +17,7 @@ import PauseIcon from '../icons/PauseIcon.vue';
 import RestartIcon from '../icons/RestartIcon.vue';
 import ResumeIcon from '../icons/ResumeIcon.vue';
 import TwitterIcon from '../icons/TwitterIcon.vue';
-import { IconButtonColor, IconType, Size } from '../story';
+import { IconButtonColor, IconType, Size } from '../../story';
 
 type Classes = {
   [key: string]: boolean;
