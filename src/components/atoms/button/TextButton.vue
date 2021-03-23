@@ -6,11 +6,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, SetupContext, PropType } from 'vue';
-import { Props } from '@/components/story';
-
-type Classes = {
-  [key: string]: boolean;
-};
+import { Props, Classes } from '@/components/story';
 
 export default defineComponent({
   name: 'TextButton',
