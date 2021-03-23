@@ -23,11 +23,9 @@ const template: Story = (args) => ({
 export const Small = template.bind({});
 Small.args = {
   size: 'small',
-  label: 'CloseIcon',
 };
 
 export const Medium = template.bind({});
 Medium.args = {
   size: 'medium',
-  label: 'CloseIcon',
 };

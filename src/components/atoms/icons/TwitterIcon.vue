@@ -13,22 +13,22 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import { Size } from '@/components/story';
+import { Props } from '@/components/story';
 
 export default defineComponent({
   name: 'TwitterIcon',
 
   props: {
     label: {
-      type: String,
+      type: String as PropType<Props['label']>,
       required: true,
     },
     white: {
-      type: Boolean,
-      default: false,
+      type: Boolean as PropType<Props['isWhite']>,
+      default: true,
     },
     size: {
-      type: String as PropType<Size>,
+      type: String as PropType<Props['size']>,
       default: 'medium',
     },
   },
