@@ -5,7 +5,8 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from 'vue';
+import { computed, defineComponent, SetupContext, PropType } from 'vue';
+import { Props } from '@/components/story';
 
 type Classes = {
   [key: string]: boolean;
@@ -15,7 +16,7 @@ export default defineComponent({
   name: 'TextButton',
   props: {
     label: {
-      type: String,
+      type: String as PropType<Props['label']>,
       required: true,
     },
   },
