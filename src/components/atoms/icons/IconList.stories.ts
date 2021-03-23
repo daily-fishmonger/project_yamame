@@ -14,7 +14,7 @@ export default {
       control: { type: 'select', options: ['small', 'medium'] },
     },
     white: {
-      control: { type: 'select', options: [true, false] },
+      control: { type: 'boolean' },
     },
   },
 } as Meta;
