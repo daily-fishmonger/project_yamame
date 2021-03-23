@@ -1,28 +1,20 @@
 <template>
-  <svg
-    :class="classes"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <icon-base :label="TwitterIcon" :size="size" :white="white">
     <path
       d="M17.9441 5.92638C17.9568 6.10403 17.9568 6.28173 17.9568 6.45938C17.9568 11.8781 13.8325 18.1218 6.29441 18.1218C3.97207 18.1218 1.81473 17.4492 0 16.2817C0.329961 16.3198 0.647187 16.3325 0.989844 16.3325C2.90605 16.3325 4.67004 15.6853 6.07867 14.5812C4.27664 14.5431 2.76648 13.3629 2.24617 11.7386C2.5 11.7766 2.75379 11.802 3.02031 11.802C3.38832 11.802 3.75637 11.7512 4.09898 11.6624C2.22082 11.2817 0.812148 9.63196 0.812148 7.63958V7.58884C1.35781 7.89341 1.99238 8.08376 2.66492 8.10911C1.56086 7.37306 0.837539 6.11673 0.837539 4.6954C0.837539 3.93399 1.04055 3.23603 1.3959 2.62688C3.41367 5.11419 6.44668 6.73853 9.84766 6.91622C9.78422 6.61165 9.74613 6.29442 9.74613 5.97716C9.74613 3.71825 11.5736 1.87817 13.8451 1.87817C15.0253 1.87817 16.0913 2.3731 16.84 3.17259C17.7664 2.99493 18.6547 2.65228 19.4416 2.18274C19.137 3.13454 18.4898 3.93403 17.6395 4.44161C18.4644 4.35282 19.2639 4.12435 19.9999 3.80712C19.4416 4.61927 18.7436 5.34259 17.9441 5.92638Z"
     />
-  </svg>
+  </icon-base>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType, SetupContext } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import IconBase from './IconBase.vue';
 import { Props } from '@/components/story';
 
 export default defineComponent({
   name: 'TwitterIcon',
-
+  components: { IconBase },
   props: {
-    label: {
-      type: String as PropType<Props['label']>,
-      required: true,
-    },
     white: {
       type: Boolean as PropType<Props['isWhite']>,
       default: true,
@@ -32,43 +24,5 @@ export default defineComponent({
       default: 'medium',
     },
   },
-
-  emits: ['onClick'],
-
-  setup(props, context: SetupContext) {
-    const classes = computed(() => {
-      return {
-        'twitter-icon--white': props.white,
-        'twitter-icon--black': !props.white,
-        [`twitter-icon--${props.size}`]: true,
-      };
-    });
-
-    const onClick = (): void => {
-      context.emit('onClick');
-    };
-
-    return {
-      classes,
-      onClick,
-    };
-  },
 });
 </script>
-
-<style scoped>
-.twitter-icon--black {
-  fill: #000;
-}
-.twitter-icon--white {
-  fill: #fff;
-}
-.twitter-icon--small {
-  width: 14px;
-  height: 14px;
-}
-.twitter-icon--medium {
-  width: 20px;
-  height: 20px;
-}
-</style>
