@@ -4,3 +4,7 @@ export interface Props {
   size: 'small' | 'medium';
   isWhite: boolean;
 }
+
+export type Classes = {
+  [key: string]: boolean;
+};

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType, SetupContext } from 'vue';
-import { Props } from '@/components/story';
+import { Props, Classes } from '@/components/story';
 
 export default defineComponent({
   name: 'IconBase',
@@ -29,13 +29,15 @@ export default defineComponent({
   emits: ['onClick'],
 
   setup(props, context: SetupContext) {
-    const classes = computed(() => {
-      return {
-        'icon--white': props.white,
-        'icon--black': !props.white,
-        [`icon--${props.size}`]: true,
-      };
-    });
+    const classes = computed(
+      (): Classes => {
+        return {
+          'icon--white': props.white,
+          'icon--black': !props.white,
+          [`icon--${props.size}`]: true,
+        };
+      }
+    );
 
     const onClick = (): void => {
       context.emit('onClick');

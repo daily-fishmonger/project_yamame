@@ -4,10 +4,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-
-type Classes = {
-  [key: string]: boolean;
-};
+import { Classes } from '@/components/story';
 
 export default defineComponent({
   name: 'CarouselDot',
