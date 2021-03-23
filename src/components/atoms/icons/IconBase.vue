@@ -18,7 +18,7 @@ export default defineComponent({
     },
     white: {
       type: Boolean as PropType<Props['isWhite']>,
-      default: false,
+      default: true,
     },
     size: {
       type: String as PropType<Props['size']>,

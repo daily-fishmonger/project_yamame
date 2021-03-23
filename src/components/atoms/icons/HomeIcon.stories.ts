@@ -7,7 +7,7 @@ export default {
   args: { label: 'HomeIcon' },
   argTypes: {
     size: {
-      control: { type: 'select', options: ['small', 'medium', 'large'] },
+      control: { type: 'select', options: ['small', 'medium'] },
     },
   },
 } as Meta;
