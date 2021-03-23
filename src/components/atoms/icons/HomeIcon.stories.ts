@@ -9,6 +9,9 @@ export default {
     size: {
       control: { type: 'select', options: ['small', 'medium'] },
     },
+    white: {
+      control: { type: 'select', options: [true, false] },
+    },
   },
 } as Meta;
 
@@ -20,14 +23,4 @@ const template: Story = (args) => ({
   template: '<home-icon @onClick="onClick" v-bind="args" />',
 });
 
-export const Small = template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'HomeIcon',
-};
-
-export const Medium = template.bind({});
-Medium.args = {
-  size: 'medium',
-  label: 'HomeIcon',
-};
+export const Basic = template.bind({});
