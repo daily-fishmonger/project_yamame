@@ -17,15 +17,11 @@ import PauseIcon from '../icons/PauseIcon.vue';
 import RestartIcon from '../icons/RestartIcon.vue';
 import ResumeIcon from '../icons/ResumeIcon.vue';
 import TwitterIcon from '../icons/TwitterIcon.vue';
-import { Size } from '../story';
+import { IconButtonColor, IconType, Size } from '../story';
 
 type Classes = {
   [key: string]: boolean;
 };
-
-type IconButtonColor = 'primary' | 'secondary' | 'orange';
-
-type IconType = 'close' | 'home' | 'pause' | 'restart' | 'resume' | 'twitter';
 
 export default defineComponent({
   name: 'IconButton',
