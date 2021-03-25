@@ -17,11 +17,7 @@ import PauseIcon from '../icons/PauseIcon.vue';
 import RestartIcon from '../icons/RestartIcon.vue';
 import ResumeIcon from '../icons/ResumeIcon.vue';
 import TwitterIcon from '../icons/TwitterIcon.vue';
-import { IconButtonColor, IconType, Size } from '../../story';
-
-type Classes = {
-  [key: string]: boolean;
-};
+import { Classes, IconButtonColor, IconType, Props } from '../../story';
 
 export default defineComponent({
   name: 'IconButton',
@@ -35,7 +31,7 @@ export default defineComponent({
   },
   props: {
     size: {
-      type: String as PropType<Size>,
+      type: String as PropType<Props['size']>,
       default: 'medium',
     },
     color: {
