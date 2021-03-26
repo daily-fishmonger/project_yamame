@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'DotGothic';
   font-display: swap;
-  src: url('../font/DotGothic.woff2') format('woff2'), url('/font/DotGothic.woff') format('woff');
+  src: url('../font/DotGothic.woff2') format('woff2'), url('../font/DotGothic.woff') format('woff');
 }
 body {
   font-family: 'DotGothic';
