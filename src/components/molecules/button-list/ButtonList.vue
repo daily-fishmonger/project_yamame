@@ -1,29 +1,13 @@
 <template>
   <div class="button-list">
-    <icon-button
-      :icon-type="'home'"
-      :color="'secondary'"
-      :size="'medium'"
-      @click="onClick"
-    />
-    <icon-button
-      :icon-type="'restart'"
-      :color="'secondary'"
-      :size="'medium'"
-      @click="onClick"
-    />
+    <icon-button :icon-type="'home'" :color="'secondary'" @click="onClick" />
+    <icon-button :icon-type="'restart'" :color="'secondary'" @click="onClick" />
     <icon-button
       v-if="place === 'modal'"
       :icon-type="'resume'"
-      :size="'medium'"
       :color="'orange'"
     />
-    <icon-button
-      v-else-if="place === 'result'"
-      :icon-type="'twitter'"
-      :size="'medium'"
-      :color="'primary'"
-    />
+    <icon-button v-else-if="place === 'result'" :icon-type="'twitter'" />
   </div>
 </template>
 
