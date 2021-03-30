@@ -1,7 +1,11 @@
 <template>
   <div class="help">
     <p class="help-title">遊び方</p>
-    <div v-for="(item, index) in imgsTexts" :key="index" class="help-content">
+    <div
+      v-for="(item, index) in helpContents"
+      :key="index"
+      class="help-content"
+    >
       <div :class="[index % 2 ? 'help-item-reverse' : 'help-item']">
         <img class="help-img" :src="require(`../../assets/${item.img}`)" />
         <div class="help-description">
@@ -17,11 +21,11 @@
 import { defineComponent, PropType } from 'vue';
 import { Props } from '../story';
 
-interface HelpContent {
+type HelpContent = {
   img: string;
   title: string;
   text: string;
-}
+};
 
 export default defineComponent({
   name: 'Help',
@@ -30,23 +34,9 @@ export default defineComponent({
       type: String as PropType<Props['label']>,
       required: true,
     },
-    imgsTexts: {
+    helpContents: {
       type: Array as PropType<HelpContent[]>,
       required: true,
-      default: [
-        {
-          img: 'sample.png',
-          title: 'サンプルタイトル',
-          text:
-            'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
-        },
-        {
-          img: 'sample.png',
-          title: 'サンプルタイトル',
-          text:
-            'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
-        },
-      ],
     },
   },
   setup() {

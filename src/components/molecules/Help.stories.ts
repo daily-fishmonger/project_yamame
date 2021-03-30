@@ -15,7 +15,25 @@ export default {
 export const template: Story = (args) => ({
   components: { Help },
   setup() {
-    return { args };
+    const sample = [
+      {
+        img: 'sample.png',
+        title: 'サンプルタイトル',
+        text:
+          'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
+      },
+      {
+        img: 'sample.png',
+        title: 'サンプルタイトル',
+        text:
+          'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
+      },
+    ];
+
+    return {
+      args,
+      sample,
+    };
   },
-  template: '<help @onClick="onClick" v-bind="args" />',
+  template: '<help @onClick="onClick" v-bind="args" :helpContents="sample"/>',
 });
