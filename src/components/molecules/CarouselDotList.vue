@@ -29,7 +29,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const countRange = [...Array(props.totalCount).keys()].map((i) => i + 1);
+    const countRange = [...Array(props.totalCount)].map((_, i) => ++i);
     return {
       countRange,
     };
