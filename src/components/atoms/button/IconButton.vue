@@ -69,6 +69,8 @@ export default defineComponent({
 .icon-btn {
   border-radius: 50%;
   align-items: center;
+  justify-content: center;
+  display: flex;
   outline: none;
   border: 0;
   cursor: pointer;
