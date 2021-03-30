@@ -39,6 +39,6 @@ export default defineComponent({
 
 <style scoped>
 .carousel-dot {
-  margin: 8px;
+  margin: 0 4px;
 }
 </style>
