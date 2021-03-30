@@ -3,9 +3,9 @@
     <p class="help-title">遊び方</p>
     <div v-for="(item, index) in imgsTexts" :key="index" class="help-content">
       <div :class="[index % 2 ? 'help-item-reverse' : 'help-item']">
-        <img :src="require(`../../assets/${item.img}`)" />
-        <div>
-          <p>{{ item.title }}</p>
+        <img class="help-img" :src="require(`../../assets/${item.img}`)" />
+        <div class="help-description">
+          <p class="help-item-title">{{ item.title }}</p>
           <p>{{ item.text }}</p>
         </div>
       </div>
@@ -15,7 +15,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ImgText } from '@/components/story';
+
+interface HelpContent {
+  img: string;
+  title: string;
+  text: string;
+}
 
 export default defineComponent({
   name: 'Help',
@@ -26,20 +31,20 @@ export default defineComponent({
       required: true,
     },
     imgsTexts: {
-      type: Array as PropType<ImgText[]>,
+      type: Array as PropType<HelpContent[]>,
       required: true,
       default: [
         {
-          img: 'logo.png',
+          img: 'sample.png',
           title: 'サンプルタイトル',
           text:
-            'サンプルテキストサンプルテキストサンプルテキストサンプルテキスト',
+            'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
         },
         {
-          img: 'logo.png',
+          img: 'sample.png',
           title: 'サンプルタイトル',
           text:
-            'サンプルテキストサンプルテキストサンプルテキストサンプルテキスト',
+            'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
         },
       ],
     },
@@ -58,7 +63,13 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   width: 270px;
-  height: 305px;
+  margin: 0 19px 0 19px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.help-img {
+  width: 100px;
+  height: auto;
 }
 .help-title {
   font-weight: bold;
@@ -66,16 +77,34 @@ export default defineComponent({
   line-height: 35px;
 }
 .help-content {
-  width: 270px;
-  height: 135px;
+  margin: 23px 0 22px 0;
 }
 .help-item {
   display: flex;
   height: 100%;
 }
+.help-item-title {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.help-description {
+  font-size: 12px;
+}
+.help-item .help-description {
+  margin: 8px 0 0 15px;
+}
+.help-item .help-item-title {
+  text-align: left;
+}
 .help-item-reverse {
   display: flex;
   flex-direction: row-reverse;
   height: 100%;
+}
+.help-item-reverse .help-description {
+  margin: 8px 15px 0 0;
+}
+.help-item-reverse .help-item-title {
+  text-align: right;
 }
 </style>
