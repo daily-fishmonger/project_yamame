@@ -1,13 +1,26 @@
 <template>
   <div class="button-list">
-    <icon-button :icon-type="'home'" :color="'secondary'" @click="onClick" />
-    <icon-button :icon-type="'restart'" :color="'secondary'" @click="onClick" />
+    <icon-button
+      :icon-type="'home'"
+      :color="'secondary'"
+      @click="handleClickHome"
+    />
+    <icon-button
+      :icon-type="'restart'"
+      :color="'secondary'"
+      @click="handleClickRestart"
+    />
     <icon-button
       v-if="place === 'modal'"
       :icon-type="'resume'"
       :color="'orange'"
+      @click="handleClickResume"
     />
-    <icon-button v-else-if="place === 'result'" :icon-type="'twitter'" />
+    <icon-button
+      v-else-if="place === 'result'"
+      :icon-type="'twitter'"
+      @click="handleClickTwitter"
+    />
   </div>
 </template>
 
@@ -21,12 +34,31 @@ export default defineComponent({
   components: {
     IconButton,
   },
-  emits: ['onClick'],
   props: {
     place: {
       type: String as PropType<Place>,
       default: 'modal',
     },
+  },
+  setup(props, context) {
+    const handleClickHome = () => {
+      context.emit('home');
+    };
+    const handleClickRestart = () => {
+      context.emit('restart');
+    };
+    const handleClickResume = () => {
+      context.emit('resume');
+    };
+    const handleClickTwitter = () => {
+      context.emit('twitter');
+    };
+    return {
+      handleClickHome,
+      handleClickRestart,
+      handleClickResume,
+      handleClickTwitter,
+    };
   },
 });
 </script>
