@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, SetupContext } from 'vue';
 import IconButton from '../../atoms/button/IconButton.vue';
 type Place = 'modal' | 'result';
 
@@ -41,7 +41,7 @@ export default defineComponent({
     },
   },
   emits: ['home', 'restart', 'resume', 'twitter'],
-  setup(props, context) {
+  setup(_, context: SetupContext) {
     const handleClickHome = () => {
       context.emit('home');
     };
