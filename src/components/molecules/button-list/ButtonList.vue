@@ -40,6 +40,7 @@ export default defineComponent({
       default: 'modal',
     },
   },
+  emits: ['home', 'restart', 'resume', 'twitter'],
   setup(props, context) {
     const handleClickHome = () => {
       context.emit('home');
