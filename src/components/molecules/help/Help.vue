@@ -1,25 +1,36 @@
 <template>
-  <div class="help">
+  <div class="help" @click="contractImg">
     <p class="help-title">遊び方</p>
-    <div
-      v-for="(item, index) in helpContents"
-      :key="index"
-      class="help-content"
-    >
-      <div :class="[index % 2 ? 'help-item-reverse' : 'help-item']">
-        <img class="help-img" :src="require(`../../assets/${item.img}`)" />
-        <div class="help-description">
-          <p class="help-item-title">{{ item.title }}</p>
-          <p>{{ item.text }}</p>
+    <div class="help-contents">
+      <div
+        v-for="(item, index) in helpContents"
+        :key="index"
+        class="help-content"
+      >
+        <div :class="[index % 2 ? 'help-item-reverse' : 'help-item']">
+          <img
+            class="help-img"
+            :src="require(`@/assets/${item.img}`)"
+            @click.stop="expandImg(index)"
+          />
+          <div class="help-description">
+            <p class="help-item-title">{{ item.title }}</p>
+            <p>{{ item.text }}</p>
+          </div>
         </div>
+        <img
+          v-show="index === activeImgOrder"
+          class="help-img-expanded"
+          :src="require(`@/assets/${item.img}`)"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Props } from '../story';
+import { defineComponent, PropType, ref } from 'vue';
+import { Props } from '../../story';
 
 type HelpContent = {
   img: string;
@@ -40,7 +51,18 @@ export default defineComponent({
     },
   },
   setup() {
-    return {};
+    const activeImgOrder = ref<number>(-1);
+    const expandImg = (index: number) => {
+      activeImgOrder.value = index;
+    };
+    const contractImg = () => {
+      activeImgOrder.value = -1;
+    };
+    return {
+      activeImgOrder,
+      expandImg,
+      contractImg,
+    };
   },
 });
 </script>
@@ -64,6 +86,9 @@ export default defineComponent({
   font-weight: bold;
   font-size: 18px;
   line-height: 35px;
+}
+.help-contents {
+  position: relative;
 }
 .help-content {
   margin: 23px 0 22px;
@@ -95,5 +120,13 @@ export default defineComponent({
 }
 .help-item-reverse .help-item-title {
   text-align: right;
+}
+.help-img-expanded {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
 }
 </style>
