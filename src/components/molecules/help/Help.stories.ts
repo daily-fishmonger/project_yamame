@@ -23,7 +23,7 @@ export const template: Story = (args) => ({
           'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
       },
       {
-        img: 'sample.png',
+        img: 'sample2.png',
         title: 'サンプルタイトル',
         text:
           'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
