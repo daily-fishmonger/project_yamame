@@ -81,6 +81,7 @@ export default defineComponent({
 .help-img {
   width: 100px;
   height: auto;
+  cursor: pointer;
 }
 .help-title {
   font-weight: bold;
@@ -128,5 +129,7 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   width: 90%;
   height: auto;
+  box-shadow: 3px 3px 6px;
+  cursor: pointer;
 }
 </style>
