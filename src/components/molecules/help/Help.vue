@@ -129,7 +129,7 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   width: 90%;
   height: auto;
-  box-shadow: 3px 3px 6px;
+  filter: drop-shadow(3px 3px 6px #000000);
   cursor: pointer;
 }
 </style>
