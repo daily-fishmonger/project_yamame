@@ -6,11 +6,13 @@ import { Point, Size } from './libs';
 export default class SpriteActor extends Actor {
   constructor(
     _point: Point,
+    _hitArea: Rectangle,
     _hitAreaOffset: Point,
+    _isCat: boolean,
     private _sprite: Sprite,
     private _size: Size
   ) {
-    super(_point, _hitAreaOffset);
+    super(_point, _hitArea, _hitAreaOffset, _isCat);
   }
 
   public render(target: HTMLCanvasElement): void {

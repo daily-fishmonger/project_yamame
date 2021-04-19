@@ -1,68 +1,74 @@
 import Actor from './actor';
+import GameInformation from './gameInformation';
+
 export default class Scene {
   constructor(
-    private _actors: Actor[],
-    private _destroyedActors: Actor[],
-    private _name: string,
-    private _backgroundColor: string,
-    private _renderingTarget: HTMLCanvasElement
+    private _actors: Actor[] = [],
+    private _destroyedActors: Actor[] = [],
+    private _name: string = '',
+    private _backgroundColor: string = '',
+    private _renderingTarget: HTMLCanvasElement = document.createElement(
+      'canvas'
+    )
   ) {}
 
-  add(actor: Actor): void {
+  public add(actor: Actor): void {
     this._actors.push(actor);
     // actor.addEventListener('spawnactor', (e) => this.add(e.target));
     // actor.addEventListener('destroy', (e) => this._addDestroyedActor(e.target));
   }
 
-  remove(actor: Actor): void {
+  public remove(actor: Actor): void {
     this._actors = this._actors.filter((item) => item !== actor);
   }
 
-  // _updateAll(gameInfo, input) {
-  //   this.actors.forEach((actor) => actor.update(gameInfo, input));
-  // }
+  private _hitTest(callback: () => void): void {
+    const length = this._actors.length;
+    for (let i = 0; i < length - 1; i++) {
+      for (let j = i + 1; j < length; j++) {
+        const obj1 = this._actors[i];
+        const obj2 = this._actors[j];
+        const hit = obj1.hitArea.hitTest(obj2.hitArea);
+        if (hit && (obj1.isCat || obj2.isCat)) {
+          callback();
+        }
+      }
+    }
+  }
 
-  // _hitTest() {
-  //   const length = this.actors.length;
-  //   for(let i=0; i < length - 1; i++) {
-  //     for(let j=i+1; j < length; j++) {
-  //       const obj1 = this.actors[i];
-  //       const obj2 = this.actors[j];
-  //       const hit = obj1.hitArea.hitTest(obj2.hitArea);
-  //       if(hit) {
-  //         obj1.dispatchEvent('hit', new GameEvent(obj2));
-  //         obj2.dispatchEvent('hit', new GameEvent(obj1));
-  //       }
-  //     }
-  //   }
-  // }
+  _clearScreen(gameInfo: GameInformation): void {
+    const context = this._renderingTarget.getContext('2d');
+    if (!context) {
+      return;
+    }
+    const width = gameInfo.screenRectangle.size.width;
+    const height = gameInfo.screenRectangle.size.height;
+    context.fillStyle = this._backgroundColor;
+    context.fillRect(0, 0, width, height);
+  }
 
-  // _clearScreen(gameInfo) {
-  //   const context = this.renderingTarget.getContext('2d');
-  //   const width = gameInfo.screenRectangle.width;
-  //   const height = gameInfo.screenRectangle.height;
-  //   context.fillStyle = this.backgroundColor;
-  //   context.fillRect(0, 0, width, height);
-  // }
+  _renderAll(): void {
+    this._actors.forEach((obj) => obj.render(this._renderingTarget));
+  }
 
-  // _renderAll() {
-  //   this.actors.forEach((obj) => obj.render(this.renderingTarget));
-  // }
-
-  // _addDestroyedActor(actor) {
+  // _addDestroyedActor(actor: Actor): void {
   //   this._destroyedActors.push(actor);
   // }
 
-  // _disposeDestroyedActors() {
-  //   this._destroyedActors.forEach((actor) => this.remove(actor));
-  //   this._destroyedActors = [];
-  // }
+  _disposeDestroyedActors(): void {
+    this._destroyedActors.forEach((actor) => this.remove(actor));
+    this._destroyedActors = [];
+  }
 
-  // update(gameInfo, input) {
-  //   this._updateAll(gameInfo, input);
-  //   this._hitTest();
-  //   this._disposeDestroyedActors();
-  //   this._clearScreen(gameInfo);
-  //   this._renderAll();
-  // }
+  _updateAll(gameInfo: GameInformation): void {
+    this._actors.forEach((actor) => actor.update(gameInfo));
+  }
+
+  update(gameInfo: GameInformation): void {
+    this._updateAll(gameInfo);
+    this._hitTest(() => {}); // TODO: Replace callback
+    this._disposeDestroyedActors();
+    this._clearScreen(gameInfo);
+    this._renderAll();
+  }
 }
