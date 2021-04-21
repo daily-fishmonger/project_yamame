@@ -1,11 +1,9 @@
 import Rectangle from './rectangle';
 
 export default class Sprite {
-  constructor(
-    private _imgSrc: CanvasImageSource,
-    private _rectangle: Rectangle
-  ) {
-    this._imgSrc = _imgSrc;
+  private _canvasSrc = new Image();
+  constructor(private _imgSrc: string, private _rectangle: Rectangle) {
+    this._canvasSrc.src = _imgSrc;
     this._rectangle = _rectangle;
   }
 
@@ -13,7 +11,7 @@ export default class Sprite {
     return this._rectangle;
   }
 
-  public get imgSrc(): CanvasImageSource {
-    return this._imgSrc;
+  public get canvasSrc(): CanvasImageSource {
+    return this._canvasSrc;
   }
 }

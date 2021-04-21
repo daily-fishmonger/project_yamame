@@ -4,15 +4,15 @@ import Sprite from './sprite';
 import { Point, Size } from './libs';
 
 export default class SpriteActor extends Actor {
+  private _size: Size;
   constructor(
     _point: Point,
     _hitArea: Rectangle,
-    _hitAreaOffset: Point,
     _isCat: boolean,
-    private _sprite: Sprite,
-    private _size: Size
+    private _sprite: Sprite
   ) {
-    super(_point, _hitArea, _hitAreaOffset, _isCat);
+    super(_point, _hitArea, _isCat);
+    this._size = _sprite.rectangle.size;
   }
 
   public render(target: HTMLCanvasElement): void {
@@ -22,7 +22,7 @@ export default class SpriteActor extends Actor {
     }
     const rect = this._sprite.rectangle;
     context.drawImage(
-      this._sprite.imgSrc,
+      this._sprite.canvasSrc,
       rect.point.x,
       rect.point.y,
       rect.size.width,

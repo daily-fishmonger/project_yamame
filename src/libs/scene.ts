@@ -1,5 +1,6 @@
 import Actor from './actor';
 import GameInformation from './gameInformation';
+import { Point } from './libs';
 
 export default class Scene {
   constructor(
@@ -36,7 +37,7 @@ export default class Scene {
     }
   }
 
-  _clearScreen(gameInfo: GameInformation): void {
+  private _clearScreen(gameInfo: GameInformation): void {
     const context = this._renderingTarget.getContext('2d');
     if (!context) {
       return;
@@ -47,7 +48,7 @@ export default class Scene {
     context.fillRect(0, 0, width, height);
   }
 
-  _renderAll(): void {
+  private _renderAll(): void {
     this._actors.forEach((obj) => obj.render(this._renderingTarget));
   }
 
@@ -55,17 +56,20 @@ export default class Scene {
   //   this._destroyedActors.push(actor);
   // }
 
-  _disposeDestroyedActors(): void {
+  private _disposeDestroyedActors(): void {
     this._destroyedActors.forEach((actor) => this.remove(actor));
     this._destroyedActors = [];
   }
 
-  _updateAll(gameInfo: GameInformation): void {
-    this._actors.forEach((actor) => actor.update(gameInfo));
+  private _updateAll(gameInfo: GameInformation, dest: Point): void {
+    this._actors.forEach((actor) => actor.update(gameInfo, dest));
   }
 
-  update(gameInfo: GameInformation): void {
-    this._updateAll(gameInfo);
+  public update(gameInfo: GameInformation, dest?: Point): void {
+    if (!dest) {
+      return;
+    }
+    this._updateAll(gameInfo, dest);
     this._hitTest(() => {}); // TODO: Replace callback
     this._disposeDestroyedActors();
     this._clearScreen(gameInfo);

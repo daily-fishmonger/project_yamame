@@ -22,11 +22,11 @@ export default class Game {
     this._currentScene = newScene;
   }
 
-  start(): void {
+  public start(): void {
     requestAnimationFrame(this._loop.bind(this));
   }
 
-  _loop(timestamp: number): void {
+  private _loop(timestamp: number): void {
     const elapsedSec = (timestamp - this._prevTimestamp) / 1000;
     const accuracy = 0.9; // あまり厳密にするとフレームが飛ばされることがあるので
     const frameTime = (1 / this._maxFps) * accuracy; // 精度を落とす

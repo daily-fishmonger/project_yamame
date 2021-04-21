@@ -1,14 +1,16 @@
 import Rectangle from './rectangle';
-import { Point } from './libs';
 import GameInformation from './gameInformation';
+import { Point } from './libs';
 
 export default class Actor {
+  private _hitAreaOffset: Point;
   constructor(
     private _point: Point,
     private _hitArea: Rectangle,
-    private _hitAreaOffset: Point,
     private _isCat: boolean
-  ) {}
+  ) {
+    this._hitAreaOffset = _hitArea.point;
+  }
 
   public get point(): Point {
     return this._point;
@@ -32,5 +34,5 @@ export default class Actor {
 
   public render(_target: HTMLCanvasElement): void {}
 
-  public update(_gameInfo: GameInformation): void {}
+  public update(_gameInfo: GameInformation, _dest: Point): void {}
 }
