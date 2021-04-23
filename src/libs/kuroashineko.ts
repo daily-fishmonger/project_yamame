@@ -3,6 +3,7 @@ import Rectangle from './rectangle';
 import Sprite from './sprite';
 import { Point } from './libs';
 import GameInformation from './gameInformation';
+import Cat from '@/assets/sample3.png';
 
 export default class Kuroashineko extends SpriteActor {
   private _speed = 2;
@@ -21,7 +22,7 @@ export default class Kuroashineko extends SpriteActor {
       ),
       _isCat,
       new Sprite(
-        '@/assets/sample3.png',
+        Cat,
         new Rectangle(
           {
             x: 0,

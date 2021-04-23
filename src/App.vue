@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <GameComponent />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue';
+<script lang="ts">
+import { defineComponent, onMounted } from 'vue';
+import Game from '@/libs/game';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
+export default defineComponent({
+  setup() {
+    const GameComponent = new Game(
+      {
+        height: 400,
+        width: 300,
+      },
+      {
+        x: 100,
+        y: 250,
+      }
+    );
+    onMounted((): void => {
+      document.body.appendChild(GameComponent.screenCanvas);
+      GameComponent.start();
+    });
+    return {
+      GameComponent,
+    };
   },
-};
+});
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
