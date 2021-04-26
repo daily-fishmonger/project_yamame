@@ -55,10 +55,7 @@ export default class GameManager {
       this._maxFps,
       this.currentFps
     );
-    this._currentScene.update(info, {
-      x: 200,
-      y: 200,
-    });
+    this._currentScene.update(info, { x: 0, y: 0 });
 
     requestAnimationFrame(this._loop.bind(this));
   }

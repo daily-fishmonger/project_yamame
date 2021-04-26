@@ -11,7 +11,13 @@ export default class Scene {
     private _renderingTarget: HTMLCanvasElement = document.createElement(
       'canvas'
     )
-  ) {}
+  ) {
+    // _renderingTarget.addEventListener(
+    //   'touchstart',
+    //   this._handleTouchEvent,
+    //   false
+    // );
+  }
 
   public add(actor: Actor): void {
     this._actors.push(actor);
@@ -62,17 +68,25 @@ export default class Scene {
   }
 
   private _updateAll(gameInfo: GameInformation, dest: Point): void {
-    this._actors.forEach((actor) => actor.update(gameInfo, dest));
+    this._actors
+      .filter((actor) => !actor.isCat)
+      .forEach((actor) => actor.update(gameInfo, dest));
   }
 
-  public update(gameInfo: GameInformation, dest?: Point): void {
-    if (!dest) {
-      return;
-    }
+  public update(gameInfo: GameInformation, dest: Point): void {
     this._updateAll(gameInfo, dest);
     this._hitTest(() => {}); // TODO: Replace callback
     this._disposeDestroyedActors();
     this._clearScreen(gameInfo);
     this._renderAll();
   }
+
+  // private updateCat(dest: Point) {
+  //   this._actors
+  //     .filter((actor) => actor.isCat)[0]
+  //     .updateCat({
+  //       x: t.clientX,
+  //       y: t.clientY,
+  //     });
+  // }
 }

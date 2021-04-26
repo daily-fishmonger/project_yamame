@@ -12,12 +12,12 @@ export default class Kuroashineko extends SpriteActor {
       _point,
       new Rectangle(
         {
-          x: 8,
-          y: 8,
+          x: 20,
+          y: 20,
         },
         {
-          height: 2,
-          width: 2,
+          height: 40,
+          width: 40,
         }
       ),
       _isCat,
@@ -29,8 +29,8 @@ export default class Kuroashineko extends SpriteActor {
             y: 0,
           },
           {
-            height: 16,
-            width: 16,
+            height: 400,
+            width: 400,
           }
         )
       )

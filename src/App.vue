@@ -1,5 +1,5 @@
 <template>
-  <GameComponent />
+  <div />
 </template>
 
 <script lang="ts">
@@ -8,25 +8,24 @@ import Game from '@/libs/game';
 
 export default defineComponent({
   setup() {
-    const GameComponent = new Game(
-      {
-        height: 400,
-        width: 300,
-      },
-      {
-        x: 100,
-        y: 250,
-      }
-    );
     onMounted((): void => {
+      const GameComponent = new Game(
+        {
+          height: Math.min(window.innerHeight, 1024),
+          width: Math.min(window.innerWidth, 768),
+        },
+        {
+          x: 0,
+          y: 100,
+        }
+      );
       document.body.appendChild(GameComponent.screenCanvas);
       GameComponent.start();
     });
-    return {
-      GameComponent,
-    };
   },
 });
 </script>
 
-<style></style>
+<style>
+@import url('@/assets/css/reset');
+</style>

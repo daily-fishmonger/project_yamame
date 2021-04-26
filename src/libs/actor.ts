@@ -34,5 +34,5 @@ export default class Actor {
 
   public render(_target: HTMLCanvasElement): void {}
 
-  public update(_gameInfo: GameInformation, _dest: Point): void {}
+  public update(_gameInfo: GameInformation, _dest?: Point): void {}
 }

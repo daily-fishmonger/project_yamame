@@ -29,8 +29,8 @@ export default class SpriteActor extends Actor {
       rect.size.height,
       this.point.x,
       this.point.y,
-      rect.size.width,
-      rect.size.height
+      75,
+      75
     );
   }
 
