@@ -20,6 +20,7 @@ export default defineComponent({
           y: 300,
         }
       );
+
       document.body.appendChild(GameComponent.screenCanvas);
       GameComponent.start();
     });

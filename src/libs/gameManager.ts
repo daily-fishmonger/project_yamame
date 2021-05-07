@@ -1,13 +1,15 @@
 import GameInformation from './gameInformation';
 import Rectangle from './rectangle';
 import Scene from './scene';
-import { Point, Size } from './libs';
+import TouchReceiver from './touchReceiver';
+import { Size } from './libs';
 
 export default class GameManager {
   private currentFps = 0;
   private _prevTimestamp = 0;
   public screenCanvas = document.createElement('canvas');
-  private _currentPosition: Point = { x: 0, y: 0 };
+  //private _currentPosition: Point = { x: 0, y: 0 };
+  private _touchReceiver: TouchReceiver;
 
   constructor(
     private _title: string,
@@ -17,12 +19,7 @@ export default class GameManager {
   ) {
     this.screenCanvas.height = _size.height;
     this.screenCanvas.width = _size.width;
-    this.screenCanvas.addEventListener(
-      'touchstart',
-      this._handleTouchEvent,
-      false
-    );
-    this.screenCanvas.addEventListener('click', this._handleClickEvent, false);
+    this._touchReceiver = new TouchReceiver(this.screenCanvas);
   }
 
   public get currentScene(): Scene {
@@ -62,28 +59,13 @@ export default class GameManager {
       this._maxFps,
       this.currentFps
     );
-    this._currentScene.update(info, this._currentPosition);
-
+    const position = this._touchReceiver.currentPosition;
+    console.log('aaaa', position);
+    this._currentScene.update(info, position);
     requestAnimationFrame(this._loop.bind(this));
   }
 
-  public set currentPosition(startPosition: Point) {
-    this._currentPosition = startPosition;
-  }
-
-  private _handleTouchEvent(event: TouchEvent) {
-    this._currentPosition = {
-      x: event.targetTouches[0].pageX,
-      y: event.targetTouches[0].pageY,
-    };
-    console.log(event.targetTouches[0].pageX);
-  }
-
-  private _handleClickEvent(event: MouseEvent) {
-    this._currentPosition = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
-    console.log(event.offsetX);
-  }
+  // public set currentPosition(startPosition: Point) {
+  //   this._currentPosition = startPosition;
+  // }
 }
