@@ -2,14 +2,14 @@ import GameInformation from './gameInformation';
 import Rectangle from './rectangle';
 import Scene from './scene';
 import TouchReceiver from './touchReceiver';
-import { Size } from './libs';
+import { Point, Size } from './libs';
 
 export default class GameManager {
   private currentFps = 0;
   private _prevTimestamp = 0;
   public screenCanvas = document.createElement('canvas');
-  //private _currentPosition: Point = { x: 0, y: 0 };
-  private _touchReceiver: TouchReceiver;
+  private _currentPosition: Point = { x: 0, y: 0 };
+  private _touchReceiver = new TouchReceiver(this.screenCanvas);
 
   constructor(
     private _title: string,
@@ -19,7 +19,6 @@ export default class GameManager {
   ) {
     this.screenCanvas.height = _size.height;
     this.screenCanvas.width = _size.width;
-    this._touchReceiver = new TouchReceiver(this.screenCanvas);
   }
 
   public get currentScene(): Scene {
@@ -35,6 +34,9 @@ export default class GameManager {
   }
 
   private _loop(timestamp: number): void {
+    if (!this._touchReceiver) {
+      return;
+    }
     const elapsedSec = (timestamp - this._prevTimestamp) / 1000;
     const accuracy = 0.9; // あまり厳密にするとフレームが飛ばされることがあるので
     const frameTime = (1 / this._maxFps) * accuracy; // 精度を落とす
@@ -59,13 +61,14 @@ export default class GameManager {
       this._maxFps,
       this.currentFps
     );
-    const position = this._touchReceiver.currentPosition;
-    console.log('aaaa', position);
-    this._currentScene.update(info, position);
+    if (this._touchReceiver.hasEvented) {
+      this._currentPosition = this._touchReceiver.currentPosition;
+    }
+    this._currentScene.update(info, this._currentPosition);
     requestAnimationFrame(this._loop.bind(this));
   }
 
-  // public set currentPosition(startPosition: Point) {
-  //   this._currentPosition = startPosition;
-  // }
+  public set currentPosition(startPosition: Point) {
+    this._currentPosition = startPosition;
+  }
 }

@@ -1,7 +1,8 @@
 import { Point } from './libs';
 
 export default class TouchReceiver {
-  private _currentPosition: Point;
+  private _currentPosition = { x: 0, y: 0 };
+  private _hasEvented = false;
 
   constructor(private _screenCanvas: HTMLCanvasElement) {
     _screenCanvas.addEventListener(
@@ -14,11 +15,14 @@ export default class TouchReceiver {
       this._handleClickEvent.bind(this),
       false
     );
-    this._currentPosition = { x: 0, y: 0 };
   }
 
   public get currentPosition(): Point {
     return this._currentPosition;
+  }
+
+  public get hasEvented(): boolean {
+    return this._hasEvented;
   }
 
   private _handleTouchEvent(event: TouchEvent) {
@@ -26,7 +30,7 @@ export default class TouchReceiver {
       x: event.targetTouches[0].pageX,
       y: event.targetTouches[0].pageY,
     };
-    console.log(this._currentPosition);
+    this._hasEvented = true;
   }
 
   private _handleClickEvent(event: MouseEvent) {
@@ -34,6 +38,6 @@ export default class TouchReceiver {
       x: event.offsetX,
       y: event.offsetY,
     };
-    console.log(this._currentPosition);
+    this._hasEvented = true;
   }
 }
