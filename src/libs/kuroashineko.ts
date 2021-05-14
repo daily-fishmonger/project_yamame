@@ -7,7 +7,7 @@ import Cat from '@/assets/sample3.png';
 
 export default class Kuroashineko extends SpriteActor {
   private _speed = 2;
-  constructor(_point: Point, _isCat: boolean) {
+  constructor(_point: Point) {
     super(
       _point,
       new Rectangle(
@@ -20,7 +20,7 @@ export default class Kuroashineko extends SpriteActor {
           width: 40,
         }
       ),
-      _isCat,
+      'cat',
       new Sprite(
         Cat,
         new Rectangle(

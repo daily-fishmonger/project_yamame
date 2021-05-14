@@ -1,11 +1,12 @@
 import Actor from './actor';
 import GameInformation from './gameInformation';
 import { Point } from './libs';
+import SpriteActor from './spriteActor';
 
 export default class Scene {
   constructor(
-    private _actors: Actor[] = [],
-    private _destroyedActors: Actor[] = [],
+    private _actors: SpriteActor[] = [],
+    private _destroyedActors: SpriteActor[] = [],
     private _name: string = '',
     private _backgroundColor: string = '',
     private _renderingTarget: HTMLCanvasElement = document.createElement(
@@ -13,11 +14,11 @@ export default class Scene {
     )
   ) {}
 
-  public get actors(): Actor[] {
+  public get actors(): SpriteActor[] {
     return this._actors;
   }
 
-  public add(actor: Actor): void {
+  public add(actor: SpriteActor): void {
     this._actors.push(actor);
     // actor.addEventListener('spawnactor', (e) => this.add(e.target));
     // actor.addEventListener('destroy', (e) => this._addDestroyedActor(e.target));
@@ -53,7 +54,19 @@ export default class Scene {
   }
 
   private _renderAll(): void {
-    this._actors.forEach((obj) => obj.render(this._renderingTarget));
+    this._actors.map((obj) => {
+      if (
+        obj.isOutOfBounds({
+          height: this._renderingTarget.height,
+          width: this._renderingTarget.width,
+        })
+      ) {
+        this.remove(obj);
+        return;
+      }
+      obj.render(this._renderingTarget);
+    });
+    console.log(this.actors);
   }
 
   // _addDestroyedActor(actor: Actor): void {

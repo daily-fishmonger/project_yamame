@@ -9,20 +9,21 @@ export default class Yamame extends SpriteActor {
   constructor(_point: Point, private velocity: Point) {
     super(
       _point,
-      new Rectangle({ x: 4, y: 4 }, { height: 8, width: 8 }),
-      false,
+      new Rectangle({ x: 16, y: 16 }, { height: 16, width: 16 }),
+      'yamame',
       new Sprite(
         Fish,
-        new Rectangle({ x: 16, y: 16 }, { height: 16, width: 16 })
+        new Rectangle({ x: 0, y: 0 }, { height: 400, width: 400 })
       )
     );
     this.velocity = velocity;
   }
 
   update(_gameInfo: GameInformation, _dest: Point): void {
-    this.point.x += this.velocity.x;
-    this.point.y += this.velocity.y;
-
+    this.point = {
+      x: this.point.x + this.velocity.x,
+      y: this.point.y + this.velocity.y,
+    };
     // scene側でactorsからremoveすればおk
   }
 }

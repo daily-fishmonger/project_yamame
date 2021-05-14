@@ -1,18 +1,22 @@
 import Actor from './actor';
 import Rectangle from './rectangle';
 import Sprite from './sprite';
-import { Point, Size } from './libs';
+import { Point, Role, Size } from './libs';
 
 export default class SpriteActor extends Actor {
   private _size: Size;
   constructor(
     _point: Point,
     _hitArea: Rectangle,
-    _isCat: boolean,
+    _role: Role,
     private _sprite: Sprite
   ) {
-    super(_point, _hitArea, _isCat);
+    super(_point, _hitArea, _role);
     this._size = _sprite.rectangle.size;
+  }
+
+  public get sprite(): Sprite {
+    return this._sprite;
   }
 
   public render(target: HTMLCanvasElement): void {
@@ -29,21 +33,19 @@ export default class SpriteActor extends Actor {
       rect.size.height,
       this.point.x,
       this.point.y,
-      this.hitArea.size.width,
-      this.hitArea.size.height
+      this.isOjisan ? rect.size.width : this.hitArea.size.width,
+      this.isOjisan ? rect.size.height : this.hitArea.size.height
     );
   }
 
-  public isOutOfBounds(boundRect: Rectangle): boolean {
+  public isOutOfBounds(boundSize: Size): boolean {
     const actorLeft = this.point.x;
     const actorRight = this.point.x + this._size.width;
     const actorTop = this.point.y;
     const actorBottom = this.point.y + this._size.height;
 
-    const horizontal =
-      actorRight < boundRect.point.x || actorLeft > boundRect.size.width;
-    const vertical =
-      actorBottom < boundRect.point.y || actorTop > boundRect.size.height;
+    const horizontal = actorRight < 0 || actorLeft > boundSize.width;
+    const vertical = actorBottom < 0 || actorTop > boundSize.height;
 
     return horizontal || vertical;
   }

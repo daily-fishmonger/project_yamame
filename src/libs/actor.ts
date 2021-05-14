@@ -1,13 +1,13 @@
 import Rectangle from './rectangle';
 import GameInformation from './gameInformation';
-import { Point } from './libs';
+import { Point, Role } from './libs';
 
 export default class Actor {
   private _hitAreaOffset: Point;
   constructor(
     private _point: Point,
     private _hitArea: Rectangle,
-    private _isCat: boolean
+    private _role: Role
   ) {
     this._hitAreaOffset = _hitArea.point;
   }
@@ -28,8 +28,20 @@ export default class Actor {
     return this._hitArea;
   }
 
+  public get role(): Role {
+    return this._role;
+  }
+
   public get isCat(): boolean {
-    return this._isCat;
+    return this._role === 'cat';
+  }
+
+  public get isOjisan(): boolean {
+    return this._role === 'ojisan';
+  }
+
+  public get isYamame(): boolean {
+    return this._role === 'yamame';
   }
 
   public render(_target: HTMLCanvasElement): void {}
