@@ -5,7 +5,7 @@ import { Point } from './libs';
 import Fish from '@/assets/sample3.png'; // TODO: change to yamame
 
 export default class Yamame extends SpriteActor {
-  constructor(_point: Point, private _speed: number, private _rad: number) {
+  constructor(_point: Point, private _velocity: Point) {
     super(
       _point,
       new Rectangle({ x: 16, y: 16 }, { height: 16, width: 16 }),
@@ -19,9 +19,13 @@ export default class Yamame extends SpriteActor {
 
   public update(): void {
     this.point = {
-      x: this.point.x + Math.cos(this._rad) * this._speed,
-      y: this.point.y + Math.sin(this._rad) * this._speed,
+      x: this.point.x + this._velocity.x,
+      y: this.point.y + this._velocity.y,
     };
-    this._rad += Math.PI / 360;
+    const rad = Math.PI / 360;
+    this._velocity = {
+      x: Math.cos(rad) * this._velocity.x - Math.sin(rad) * this._velocity.y,
+      y: Math.sin(rad) * this._velocity.x + Math.cos(rad) * this._velocity.y,
+    };
   }
 }

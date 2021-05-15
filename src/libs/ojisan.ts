@@ -11,6 +11,7 @@ export default class Ojisan extends SpriteActor {
   private _timeCount = 0;
   private _velocityX = 0.5;
   private _degree = 0;
+  private _speed = 1;
   private _initialPoint: Point;
 
   constructor(_point: Point, private _currentScene: Scene) {
@@ -27,28 +28,26 @@ export default class Ojisan extends SpriteActor {
   }
 
   // degree度の方向にspeedの速さで弾を発射する
-  public shootBullet(degree: number, speed: number): void {
+  public shootBullet(degree: number): void {
     const rad = (degree / 180) * Math.PI;
     const yamame = new Yamame(
       {
         x: this.point.x + this.sprite.rectangle.size.width / 3 - 20,
         y: this.point.y + this.sprite.rectangle.size.height / 2,
       },
-      speed,
-      rad
+      {
+        x: Math.cos(rad) * this._speed,
+        y: Math.sin(rad) * this._speed,
+      }
     );
     this._currentScene.add(yamame);
   }
 
   // num個の弾を円形に発射する
-  public shootCircularBullets(
-    num: number,
-    speed: number,
-    initDegree: number
-  ): void {
+  public shootCircularBullets(num: number, initDegree: number): void {
     const degree = 360 / num;
     for (let i = 0; i < num; i++) {
-      this.shootBullet(initDegree + degree * i, speed);
+      this.shootBullet(initDegree + degree * i);
     }
   }
 
@@ -72,7 +71,7 @@ export default class Ojisan extends SpriteActor {
       this._currentScene.actors.filter((item) => item.isYamame).length < 6
     ) {
       this._degree += 10;
-      this.shootCircularBullets(12, 1, this._degree);
+      this.shootCircularBullets(12, this._degree);
       this._timeCount = 0;
     }
   }
