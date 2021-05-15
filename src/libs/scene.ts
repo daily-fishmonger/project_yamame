@@ -65,12 +65,14 @@ export default class Scene {
     });
   }
 
-  private _updateAll(gameInfo: GameInformation, dest: Point): void {
-    this._actors.forEach((actor) => actor.update(gameInfo, dest));
+  private _updateAll(dest: Point): void {
+    this._actors.forEach((actor) =>
+      actor.isCat ? actor.update(dest) : actor.update()
+    );
   }
 
   public update(gameInfo: GameInformation, dest: Point): void {
-    this._updateAll(gameInfo, dest);
+    this._updateAll(dest);
     this._hitTest(() => {}); // TODO: Replace callback
     this._clearScreen(gameInfo);
     this._renderAll();

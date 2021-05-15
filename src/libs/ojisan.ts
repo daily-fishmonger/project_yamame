@@ -4,7 +4,6 @@ import Sprite from './sprite';
 import SpriteActor from './spriteActor';
 import Yamame from './yamame';
 import Human from '@/assets/sample3.png'; // TODO: change to ojisan
-import GameInformation from './gameInformation';
 import Scene from './scene';
 
 export default class Ojisan extends SpriteActor {
@@ -54,7 +53,7 @@ export default class Ojisan extends SpriteActor {
   }
 
   // TODO:変数修正
-  public update(_gameInfo: GameInformation, _dest: Point): void {
+  public update(): void {
     // 左右に移動する
     this.point = {
       x: this.point.x + this._velocityX,

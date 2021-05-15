@@ -1,7 +1,6 @@
 import Rectangle from './rectangle';
 import Sprite from './sprite';
 import SpriteActor from './spriteActor';
-import GameInformation from './gameInformation';
 import { Point } from './libs';
 import Fish from '@/assets/sample3.png'; // TODO: change to yamame
 
@@ -18,12 +17,11 @@ export default class Yamame extends SpriteActor {
     );
   }
 
-  update(_gameInfo: GameInformation, _dest: Point): void {
+  public update(): void {
     this.point = {
       x: this.point.x + Math.cos(this._rad) * this._speed,
       y: this.point.y + Math.sin(this._rad) * this._speed,
     };
     this._rad += Math.PI / 360;
-    // scene側でactorsからremoveすればおk
   }
 }

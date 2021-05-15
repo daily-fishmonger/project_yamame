@@ -1,5 +1,4 @@
 import Rectangle from './rectangle';
-import GameInformation from './gameInformation';
 import { Point, Role } from './libs';
 
 export default class Actor {
@@ -46,5 +45,5 @@ export default class Actor {
 
   public render(_target: HTMLCanvasElement): void {}
 
-  public update(_gameInfo: GameInformation, _dest?: Point): void {}
+  public update(_dest?: Point): void {}
 }
