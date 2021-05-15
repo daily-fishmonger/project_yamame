@@ -4,6 +4,8 @@ import { Point } from './libs';
 import SpriteActor from './spriteActor';
 
 export default class Scene {
+  private _hitNum = 0;
+
   constructor(
     private _actors: SpriteActor[] = [],
     private _name: string = '',
@@ -25,16 +27,13 @@ export default class Scene {
     this._actors = this._actors.filter((item) => item !== actor);
   }
 
-  private _hitTest(callback: () => void): void {
-    const length = this._actors.length;
-    for (let i = 0; i < length - 1; i++) {
-      for (let j = i + 1; j < length; j++) {
-        const obj1 = this._actors[i];
-        const obj2 = this._actors[j];
-        const hit = obj1.hitArea.hitTest(obj2.hitArea);
-        if (hit && (obj1.isCat || obj2.isCat)) {
-          callback();
-        }
+  private _hitTest(): void {
+    const cat = this._actors.filter((item) => item.isCat)[0];
+    const yamames = this._actors.filter((item) => item.isYamame);
+    for (const yamame of yamames) {
+      if (cat.hitArea.hitTest(yamame.hitArea)) {
+        this.remove(yamame);
+        this._hitNum++;
       }
     }
   }
@@ -73,7 +72,7 @@ export default class Scene {
 
   public update(gameInfo: GameInformation, dest: Point): void {
     this._updateAll(dest);
-    this._hitTest(() => {}); // TODO: Replace callback
+    this._hitTest();
     this._clearScreen(gameInfo);
     this._renderAll();
   }
