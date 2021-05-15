@@ -66,7 +66,6 @@ export default class Scene {
       }
       obj.render(this._renderingTarget);
     });
-    console.log(this.actors);
   }
 
   // _addDestroyedActor(actor: Actor): void {
