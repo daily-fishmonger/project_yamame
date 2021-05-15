@@ -6,7 +6,7 @@ import { Point } from './libs';
 import Fish from '@/assets/sample3.png'; // TODO: change to yamame
 
 export default class Yamame extends SpriteActor {
-  constructor(_point: Point, private velocity: Point) {
+  constructor(_point: Point, private _speed: number, private _rad: number) {
     super(
       _point,
       new Rectangle({ x: 16, y: 16 }, { height: 16, width: 16 }),
@@ -16,14 +16,14 @@ export default class Yamame extends SpriteActor {
         new Rectangle({ x: 0, y: 0 }, { height: 400, width: 400 })
       )
     );
-    this.velocity = velocity;
   }
 
   update(_gameInfo: GameInformation, _dest: Point): void {
     this.point = {
-      x: this.point.x + this.velocity.x,
-      y: this.point.y + this.velocity.y,
+      x: this.point.x + Math.cos(this._rad) * this._speed,
+      y: this.point.y + Math.sin(this._rad) * this._speed,
     };
+    this._rad += Math.PI / 360;
     // scene側でactorsからremoveすればおk
   }
 }

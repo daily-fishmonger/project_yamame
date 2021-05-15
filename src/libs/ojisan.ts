@@ -35,10 +35,8 @@ export default class Ojisan extends SpriteActor {
         x: this.point.x + this.sprite.rectangle.size.width / 3 - 20,
         y: this.point.y + this.sprite.rectangle.size.height / 2,
       },
-      {
-        x: Math.cos(rad) * speed,
-        y: Math.sin(rad) * speed,
-      }
+      speed,
+      rad
     );
     this._currentScene.add(yamame);
   }
@@ -70,7 +68,10 @@ export default class Ojisan extends SpriteActor {
     }
     // インターバルを経過していたら弾を撃つ
     this._timeCount++;
-    if (this._timeCount > this._interval) {
+    if (
+      this._timeCount > this._interval &&
+      this._currentScene.actors.filter((item) => item.isYamame).length < 6
+    ) {
       this._degree += 10;
       this.shootCircularBullets(12, 1, this._degree);
       this._timeCount = 0;
