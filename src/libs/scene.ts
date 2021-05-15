@@ -6,7 +6,6 @@ import SpriteActor from './spriteActor';
 export default class Scene {
   constructor(
     private _actors: SpriteActor[] = [],
-    private _destroyedActors: SpriteActor[] = [],
     private _name: string = '',
     private _backgroundColor: string = '',
     private _renderingTarget: HTMLCanvasElement = document.createElement(
@@ -20,8 +19,6 @@ export default class Scene {
 
   public add(actor: SpriteActor): void {
     this._actors.push(actor);
-    // actor.addEventListener('spawnactor', (e) => this.add(e.target));
-    // actor.addEventListener('destroy', (e) => this._addDestroyedActor(e.target));
   }
 
   public remove(actor: Actor): void {
@@ -68,15 +65,6 @@ export default class Scene {
     });
   }
 
-  // _addDestroyedActor(actor: Actor): void {
-  //   this._destroyedActors.push(actor);
-  // }
-
-  private _disposeDestroyedActors(): void {
-    this._destroyedActors.forEach((actor) => this.remove(actor));
-    this._destroyedActors = [];
-  }
-
   private _updateAll(gameInfo: GameInformation, dest: Point): void {
     this._actors.forEach((actor) => actor.update(gameInfo, dest));
   }
@@ -84,7 +72,6 @@ export default class Scene {
   public update(gameInfo: GameInformation, dest: Point): void {
     this._updateAll(gameInfo, dest);
     this._hitTest(() => {}); // TODO: Replace callback
-    this._disposeDestroyedActors();
     this._clearScreen(gameInfo);
     this._renderAll();
   }

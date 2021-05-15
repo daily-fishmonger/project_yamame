@@ -6,7 +6,6 @@ export default class GameScene extends Scene {
   constructor(startPosition: Point, renderingTarget: HTMLCanvasElement) {
     super(
       [new Kuroashineko(startPosition)],
-      [],
       'メイン',
       'white',
       renderingTarget
