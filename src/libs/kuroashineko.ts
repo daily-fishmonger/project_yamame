@@ -37,11 +37,12 @@ export default class Kuroashineko extends SpriteActor {
   }
 
   public update(dest: Point): void {
-    //console.log(dest);
     const dist = Math.hypot(this.point.x - dest.x, this.point.y - dest.y);
     if (dist > this._speed) {
-      this.point.x += (dest.x - this.point.x) * (this._speed / dist);
-      this.point.y += (dest.y - this.point.y) * (this._speed / dist);
+      this.point = {
+        x: this.point.x + (dest.x - this.point.x) * (this._speed / dist),
+        y: this.point.y + (dest.y - this.point.y) * (this._speed / dist),
+      };
     } else {
       this.point = dest;
     }

@@ -3,7 +3,7 @@ import Rectangle from './rectangle';
 import Sprite from './sprite';
 import SpriteActor from './spriteActor';
 import Yamame from './yamame';
-import Human from '@/assets/sample3.png'; // TODO: change to ojisan
+import Human from '@/assets/ojisample.png'; // TODO: change to ojisan
 import Scene from './scene';
 
 export default class Ojisan extends SpriteActor {
@@ -21,10 +21,13 @@ export default class Ojisan extends SpriteActor {
       'ojisan',
       new Sprite(
         Human,
-        new Rectangle({ x: 0, y: 0 }, { height: 400, width: 400 })
+        new Rectangle({ x: 0, y: 0 }, { height: 334, width: 166 })
       )
     );
     this._initialPoint = _point;
+
+    // window API経由でスマホサイズ等の判定をしておじさんの大きさを適宜小さくする
+    // console.log(window.innerWidth);
   }
 
   // degree度の方向にspeedの速さで弾を発射する
@@ -59,7 +62,7 @@ export default class Ojisan extends SpriteActor {
       y: this.point.y,
     };
     if (
-      this.point.x <= this._initialPoint.x - 200 ||
+      this.point.x <= this._initialPoint.x - 100 ||
       this.point.x >= this._initialPoint.x + 100
     ) {
       this._velocityX *= -1;
