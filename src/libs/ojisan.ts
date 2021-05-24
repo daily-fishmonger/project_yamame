@@ -71,7 +71,7 @@ export default class Ojisan extends SpriteActor {
     this._timeCount++;
     if (
       this._timeCount > this._interval &&
-      this._currentScene.actors.filter((item) => item.isYamame).length < 6
+      this._currentScene.yamames.length < 6
     ) {
       this._degree += 10;
       this.shootCircularBullets(12, this._degree);
