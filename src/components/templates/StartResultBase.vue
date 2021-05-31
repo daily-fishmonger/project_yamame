@@ -22,7 +22,7 @@ import TextButton from '../atoms/button/TextButton.vue';
 import ButtonList from '../molecules/button-list/ButtonList.vue';
 
 export default defineComponent({
-  name: 'StartFinish',
+  name: 'StartResult',
   components: {
     TextButton,
     ButtonList,

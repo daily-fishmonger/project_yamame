@@ -1,17 +1,17 @@
-import StartFinishBase from './StartFinishBase.vue';
+import StartResultBase from './StartResultBase.vue';
 import { Meta, Story } from '@storybook/vue3';
 
 export default {
-  title: 'Templates/StartFinishBase',
-  component: StartFinishBase,
+  title: 'Templates/StartResultBase',
+  component: StartResultBase,
 } as Meta;
 
 const Basic: Story = (args) => ({
-  components: { StartFinishBase },
+  components: { StartResultBase },
   setup() {
     return { args };
   },
-  template: '<start-finish-base v-bind="args" />',
+  template: '<start-result-base v-bind="args" />',
 });
 
 export const Start = Basic.bind({});
