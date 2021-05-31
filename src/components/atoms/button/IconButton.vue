@@ -92,4 +92,8 @@ export default defineComponent({
   height: 40px;
   width: 40px;
 }
+.icon-btn--large {
+  height: 50px;
+  width: 50px;
+}
 </style>

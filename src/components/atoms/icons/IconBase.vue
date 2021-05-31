@@ -66,4 +66,8 @@ export default defineComponent({
   width: 20px;
   height: 20px;
 }
+.icon--large {
+  width: 26px;
+  height: 26px;
+}
 </style>

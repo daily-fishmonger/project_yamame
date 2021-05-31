@@ -1,7 +1,7 @@
 export interface Props {
   label: string;
   color: string;
-  size: 'small' | 'medium';
+  size: 'small' | 'medium' | 'large';
   isWhite: boolean;
 }
 
