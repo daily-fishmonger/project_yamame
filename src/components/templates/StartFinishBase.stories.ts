@@ -6,7 +6,7 @@ export default {
   component: StartFinishBase,
 } as Meta;
 
-export const Basic: Story = (args) => ({
+const Basic: Story = (args) => ({
   components: { StartFinishBase },
   setup() {
     return { args };
