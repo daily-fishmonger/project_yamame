@@ -2,7 +2,6 @@ import SpriteActor from './spriteActor';
 import Rectangle from './rectangle';
 import Sprite from './sprite';
 import { Point } from './libs';
-import GameInformation from './gameInformation';
 import Cat from '@/assets/sample3.png';
 
 export default class Kuroashineko extends SpriteActor {
@@ -37,12 +36,13 @@ export default class Kuroashineko extends SpriteActor {
     );
   }
 
-  update(_gameInfo: GameInformation, dest: Point): void {
-    //console.log(dest);
+  public update(dest: Point): void {
     const dist = Math.hypot(this.point.x - dest.x, this.point.y - dest.y);
     if (dist > this._speed) {
-      this.point.x += (dest.x - this.point.x) * (this._speed / dist);
-      this.point.y += (dest.y - this.point.y) * (this._speed / dist);
+      this.point = {
+        x: this.point.x + (dest.x - this.point.x) * (this._speed / dist),
+        y: this.point.y + (dest.y - this.point.y) * (this._speed / dist),
+      };
     } else {
       this.point = dest;
     }

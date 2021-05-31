@@ -1,45 +1,53 @@
-import Actor from './actor';
 import GameInformation from './gameInformation';
+import Kuroashineko from './kuroashineko';
 import { Point } from './libs';
+import Ojisan from './ojisan';
 import SpriteActor from './spriteActor';
+import Yamame from './yamame';
 
 export default class Scene {
+  private _hitNum = 0;
+
   constructor(
-    private _actors: SpriteActor[] = [],
-    private _destroyedActors: SpriteActor[] = [],
-    private _name: string = '',
-    private _backgroundColor: string = '',
+    private _yamames: Yamame[] = [],
     private _renderingTarget: HTMLCanvasElement = document.createElement(
       'canvas'
-    )
+    ),
+    private _cat?: Kuroashineko,
+    private _ojisan?: Ojisan
   ) {}
 
-  public get actors(): SpriteActor[] {
-    return this._actors;
+  public set cat(cat: Kuroashineko) {
+    this._cat = cat;
   }
 
-  public add(actor: SpriteActor): void {
-    this._actors.push(actor);
-    // actor.addEventListener('spawnactor', (e) => this.add(e.target));
-    // actor.addEventListener('destroy', (e) => this._addDestroyedActor(e.target));
+  public set ojisan(ojisan: Ojisan) {
+    this._ojisan = ojisan;
   }
 
-  public remove(actor: Actor): void {
-    this._actors = this._actors.filter((item) => item !== actor);
+  public get yamames(): Yamame[] {
+    return this._yamames;
   }
 
-  private _hitTest(callback: () => void): void {
-    const length = this._actors.length;
-    for (let i = 0; i < length - 1; i++) {
-      for (let j = i + 1; j < length; j++) {
-        const obj1 = this._actors[i];
-        const obj2 = this._actors[j];
-        const hit = obj1.hitArea.hitTest(obj2.hitArea);
-        if (hit && (obj1.isCat || obj2.isCat)) {
-          callback();
-        }
-      }
+  public add(yamame: Yamame): void {
+    this._yamames.push(yamame);
+  }
+
+  public remove(actor: SpriteActor): void {
+    this._yamames = this._yamames.filter((item) => item !== actor);
+  }
+
+  private _hitTest(): void {
+    if (!this._cat) {
+      return;
     }
+    // 要パフォーマンスチューニング（暫定的に、猫ちゃん要素の順番が固定なためこうしている）
+    const cat = this._cat;
+    const yamames = this._yamames.filter(
+      (item) => item.isYamame && item.hitArea.hitTest(cat.hitArea)
+    );
+    this._hitNum += yamames.length;
+    yamames.map((item) => this.remove(item));
   }
 
   private _clearScreen(gameInfo: GameInformation): void {
@@ -49,12 +57,15 @@ export default class Scene {
     }
     const width = gameInfo.screenRectangle.size.width;
     const height = gameInfo.screenRectangle.size.height;
-    context.fillStyle = this._backgroundColor;
+    context.fillStyle = 'white';
     context.fillRect(0, 0, width, height);
   }
 
   private _renderAll(): void {
-    this._actors.map((obj) => {
+    if (!this._ojisan || !this._cat) {
+      return;
+    }
+    [this._ojisan, this._cat, ...this._yamames].map((obj) => {
       if (
         obj.isOutOfBounds({
           height: this._renderingTarget.height,
@@ -66,26 +77,20 @@ export default class Scene {
       }
       obj.render(this._renderingTarget);
     });
-    console.log(this.actors);
   }
 
-  // _addDestroyedActor(actor: Actor): void {
-  //   this._destroyedActors.push(actor);
-  // }
-
-  private _disposeDestroyedActors(): void {
-    this._destroyedActors.forEach((actor) => this.remove(actor));
-    this._destroyedActors = [];
-  }
-
-  private _updateAll(gameInfo: GameInformation, dest: Point): void {
-    this._actors.forEach((actor) => actor.update(gameInfo, dest));
+  private _updateAll(dest: Point): void {
+    if (!this._ojisan || !this._cat) {
+      return;
+    }
+    this._cat.update(dest);
+    this._ojisan.update();
+    this._yamames.forEach((yamame) => yamame.update());
   }
 
   public update(gameInfo: GameInformation, dest: Point): void {
-    this._updateAll(gameInfo, dest);
-    this._hitTest(() => {}); // TODO: Replace callback
-    this._disposeDestroyedActors();
+    this._updateAll(dest);
+    this._hitTest();
     this._clearScreen(gameInfo);
     this._renderAll();
   }
