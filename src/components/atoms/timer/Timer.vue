@@ -21,7 +21,13 @@
 import { ref, defineComponent, onMounted } from 'vue';
 export default defineComponent({
   name: 'Timer',
-  setup() {
+  props: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  setup(props) {
     let sec = ref<number>(60);
     let timerOn = ref<boolean>(false);
     let timerObj = ref<number>(0);
@@ -42,7 +48,9 @@ export default defineComponent({
     };
     onMounted((): void => {
       timerObj.value = window.setInterval(() => {
-        count();
+        if (props.isActive) {
+          count();
+        }
       }, 1000);
       timerOn.value = true;
     });
