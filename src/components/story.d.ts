@@ -17,3 +17,5 @@ export type IconType =
   | 'restart'
   | 'resume'
   | 'twitter';
+
+export type Pages = 'start' | 'result';
