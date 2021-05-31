@@ -9,7 +9,7 @@ export default {
     size: {
       control: {
         type: 'select',
-        options: ['small', 'medium'] as Props['size'][],
+        options: ['small', 'medium', 'large'] as Props['size'][],
       },
     },
     color: {
