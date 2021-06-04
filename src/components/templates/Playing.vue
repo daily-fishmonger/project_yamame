@@ -10,14 +10,15 @@
         @onClick="pause"
       />
     </div>
-    <div class="game-area"></div>
+    <div id="gameArea" class="game-area"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue';
+import { ref, defineComponent, onMounted } from 'vue';
 import IconButton from '@/components/atoms/button/IconButton.vue';
 import Timer from '@/components/atoms/timer/Timer.vue';
+import Game from '@/libs/game';
 
 export default defineComponent({
   name: 'Playing',
@@ -31,6 +32,28 @@ export default defineComponent({
       // TODO: モーダル表示させる処理
       isActive.value = !isActive.value;
     };
+    onMounted((): void => {
+      // headerとfooterの高さを引いたものにする
+      const maxWidth = Math.min(window.innerWidth, 768);
+      const maxHeight = Math.min(window.innerHeight, 1024);
+
+      const gameArea = document.getElementById('gameArea');
+      if (!gameArea) return;
+
+      const game = new Game(
+        {
+          height: maxHeight,
+          width: maxWidth,
+        },
+        {
+          x: maxWidth / 2,
+          y: maxHeight / 2,
+        }
+      );
+      gameArea.appendChild(game.screenCanvas);
+
+      game.start();
+    });
     return {
       isActive,
       pause,
@@ -40,10 +63,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import url('../../assets/css/reset.css');
+
+canvas {
+  display: block;
+  margin: auto;
+}
 .game {
   background-color: #96c3ed;
-  height: 812px;
-  width: 376px;
+  height: 1024px;
+  width: 768px;
   padding: 18px;
 }
 .header {
@@ -58,8 +87,8 @@ export default defineComponent({
   margin: 12px auto;
   background-color: white;
   border-radius: 12px;
-  height: 680px;
-  width: 340px;
+  height: 1024px;
+  width: 768px;
 }
 .fish {
   margin: 0 58px;
