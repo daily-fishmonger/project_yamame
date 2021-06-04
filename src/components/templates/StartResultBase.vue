@@ -4,7 +4,7 @@
       <h1>魚屋の日常</h1>
       <text-button label="スタート！" @onClick="handleClickStart" />
     </div>
-    <div v-if="page === 'result'" class="container">
+    <div v-else-if="page === 'result'" class="container">
       <button-list
         place="result"
         @handleClickHome="handleClickHome"
@@ -38,13 +38,13 @@ export default defineComponent({
     const handleClickStart = (): void => {
       context.emit('start');
     };
-    const handleClickHome = () => {
+    const handleClickHome = (): void => {
       context.emit('home');
     };
-    const handleClickRestart = () => {
+    const handleClickRestart = (): void => {
       context.emit('restart');
     };
-    const handleClickTwitter = () => {
+    const handleClickTwitter = (): void => {
       context.emit('twitter');
     };
     return {
@@ -64,7 +64,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: center / cover no-repeat url('../../assets/base.png');
 }
 
 .container {
