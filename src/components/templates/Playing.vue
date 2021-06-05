@@ -7,7 +7,7 @@
         icon-type="pause"
         color="primary"
         size="large"
-        @onClick="pause"
+        @onClick="pauseButtonAction"
       />
     </div>
     <div id="gameArea" class="game-area"></div>
@@ -27,36 +27,52 @@ export default defineComponent({
     Timer,
   },
   setup() {
-    let isActive = ref<boolean>(true);
-    const pause = (): void => {
-      // TODO: モーダル表示させる処理
-      isActive.value = !isActive.value;
-    };
+    // headerとfooterの高さを引いたものにする
+    const maxWidth = Math.min(window.innerWidth, 768);
+    const maxHeight = Math.min(window.innerHeight, 1024);
+    const game = new Game(
+      {
+        height: maxHeight,
+        width: maxWidth,
+      },
+      {
+        x: maxWidth / 2,
+        y: maxHeight / 2,
+      }
+    );
     onMounted((): void => {
-      // headerとfooterの高さを引いたものにする
-      const maxWidth = Math.min(window.innerWidth, 768);
-      const maxHeight = Math.min(window.innerHeight, 1024);
-
       const gameArea = document.getElementById('gameArea');
       if (!gameArea) return;
 
-      const game = new Game(
-        {
-          height: maxHeight,
-          width: maxWidth,
-        },
-        {
-          x: maxWidth / 2,
-          y: maxHeight / 2,
-        }
-      );
       gameArea.appendChild(game.screenCanvas);
-
       game.start();
     });
+
+    let isActive = ref<boolean>(true);
+    const _toggleIsActive = (): void => {
+      isActive.value = !isActive.value;
+    };
+    const _pause = (): void => {
+      // TODO: モーダルオープン処理
+      game.pause();
+    };
+    const _restart = (): void => {
+      // TODO: モーダルクローズ処理
+      game.restart();
+    };
+
+    const pauseButtonAction = (): void => {
+      _toggleIsActive();
+      if (game.isPaused) {
+        _restart();
+      } else {
+        _pause();
+      }
+    };
+
     return {
       isActive,
-      pause,
+      pauseButtonAction,
     };
   },
 });
