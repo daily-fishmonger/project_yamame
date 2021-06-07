@@ -49,6 +49,7 @@ export default defineComponent({
   border: 0;
   cursor: pointer;
   transition: 0.2s;
+  user-select: none;
 }
 .text-btn:hover {
   background-color: #96c3ed;
