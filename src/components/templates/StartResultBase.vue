@@ -31,6 +31,7 @@ export default defineComponent({
     page: {
       type: String as PropType<Pages>,
       required: true,
+      default: 'start',
     },
   },
   emits: ['start', 'home', 'restart', 'twitter'],
