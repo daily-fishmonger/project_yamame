@@ -10,7 +10,7 @@
         <div :class="[index % 2 ? 'help-item-reverse' : 'help-item']">
           <img
             class="help-img"
-            :src="require(`@/assets/${item.img}`)"
+            :src="item.img"
             @click.stop="expandImg(index)"
           />
           <div class="help-description">
@@ -21,7 +21,7 @@
         <img
           v-show="index === activeImgOrder"
           class="help-img-expanded"
-          :src="require(`@/assets/${item.img}`)"
+          :src="item.img"
         />
       </div>
     </div>

@@ -1,5 +1,7 @@
 import Help from './Help.vue';
 import { Meta, Story } from '@storybook/vue3';
+import helpFirst from '@/assets/sample.png';
+import helpSecond from '@/assets/sample2.png';
 
 export default {
   title: 'Molecules/help',
@@ -17,13 +19,13 @@ export const template: Story = (args) => ({
   setup() {
     const sample = [
       {
-        img: 'sample.png',
+        img: helpFirst,
         title: 'サンプルタイトル',
         text:
           'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
       },
       {
-        img: 'sample2.png',
+        img: helpSecond,
         title: 'サンプルタイトル',
         text:
           'サンプルテキストサンプル\nサンプルテキストサンプル\nサンプルテキストサンプル',
