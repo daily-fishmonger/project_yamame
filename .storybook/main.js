@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 module.exports = {
   stories: [
@@ -9,7 +9,10 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials"
   ],
-  webpackFinal: (config) => {
+  core: {
+    builder: 'storybook-builder-vite',
+  },
+  async viteFinal(config) {
     config.resolve.alias['@'] = path.resolve(__dirname, '../src');
     return config;
   },
