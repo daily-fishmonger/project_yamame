@@ -73,7 +73,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import url('../../assets/css/reset.css');
+@import url('@/assets/css/reset');
 
 .game {
   background-color: #96c3ed;
