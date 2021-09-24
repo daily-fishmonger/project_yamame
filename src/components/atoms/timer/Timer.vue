@@ -27,7 +27,7 @@ export default defineComponent({
       default: true,
     },
   },
-  emits: ['stop-timer'],
+  emits: ['complete-timer'],
   setup(props, context: SetupContext) {
     let sec = ref<number>(60);
     let timerOn = ref<boolean>(false);
@@ -45,7 +45,7 @@ export default defineComponent({
 
       if (sec.value <= 0) {
         complete();
-        context.emit('stop-timer');
+        context.emit('complete-timer');
       }
     };
     onMounted((): void => {
