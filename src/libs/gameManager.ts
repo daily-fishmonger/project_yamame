@@ -10,6 +10,7 @@ export default class GameManager {
   public screenCanvas = document.createElement('canvas');
   private _currentPosition: Point = { x: 0, y: 0 };
   private _touchReceiver = new TouchReceiver(this.screenCanvas);
+  private _isPaused = false;
 
   constructor(
     private _title: string,
@@ -29,12 +30,29 @@ export default class GameManager {
     this._currentScene = newScene;
   }
 
+  public get isPaused(): boolean {
+    return this._isPaused;
+  }
+
   public start(): void {
     requestAnimationFrame(this._loop.bind(this));
   }
 
+  public pause(): void {
+    this._toggleIsPaused();
+  }
+
+  public restart(): void {
+    this._toggleIsPaused();
+    this.start();
+  }
+
+  private _toggleIsPaused(): void {
+    this._isPaused = !this._isPaused;
+  }
+
   private _loop(timestamp: number): void {
-    if (!this._touchReceiver) {
+    if (!this._touchReceiver || this._isPaused) {
       return;
     }
     const elapsedSec = (timestamp - this._prevTimestamp) / 1000;
