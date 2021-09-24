@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <div class="header">
-      <timer :is-active="isActive" />
+      <timer :is-active="isActive" @stop-timer="stopTimer" />
       <img src="@/assets/fish.png" height="42" width="120" class="fish" />
       <icon-button
         icon-type="pause"
@@ -64,9 +64,14 @@ export default defineComponent({
       return game.isPaused ? _restart() : _pause();
     };
 
+    const stopTimer = (): void => {
+      game.pause();
+    };
+
     return {
       isActive,
       pauseButtonAction,
+      stopTimer,
     };
   },
 });
