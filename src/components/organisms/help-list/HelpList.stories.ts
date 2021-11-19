@@ -6,7 +6,7 @@ import helpSecond from '@/assets/sample2.png';
 export default {
   title: 'Organisms/HelpList',
   component: Help,
-  args: { label: 'Help' },
+  args: { label: 'HelpList' },
   argTypes: {
     imgsTexts: {
       control: { type: 'object' },

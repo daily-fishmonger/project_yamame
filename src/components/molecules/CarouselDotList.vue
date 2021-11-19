@@ -45,6 +45,7 @@ export default defineComponent({
 
 <style scoped>
 .carousel-dot-wrapper {
+  width: 270px;
   display: flex;
   justify-content: center;
 }
