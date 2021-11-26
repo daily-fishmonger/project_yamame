@@ -3,7 +3,7 @@
     <div ref="helpRef" class="helplist-slide">
       <help
         v-for="(helpContents, index) in helpList"
-        v-show="index === activeHelpOrder - 1"
+        v-show="index === activeHelpOrder"
         :key="index"
         :help-contents="helpContents"
       />
@@ -35,7 +35,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const activeHelpOrder = ref(1);
+    const activeHelpOrder = ref(0);
 
     const helpRef = ref<HTMLDivElement>();
 
@@ -47,11 +47,14 @@ export default defineComponent({
       });
       ref.addEventListener('touchend', (event: TouchEvent) => {
         lastX = event.changedTouches[0].pageX;
-        if (lastX < initX && props.helpList.length > activeHelpOrder.value) {
+        if (
+          lastX < initX &&
+          props.helpList.length - 1 > activeHelpOrder.value
+        ) {
           activeHelpOrder.value++;
         } else if (
           lastX > initX &&
-          props.helpList.length <= activeHelpOrder.value
+          props.helpList.length - 1 <= activeHelpOrder.value
         ) {
           activeHelpOrder.value--;
         }

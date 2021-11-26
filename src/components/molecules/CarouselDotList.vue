@@ -31,7 +31,7 @@ export default defineComponent({
   },
   emits: ['updateActiveCount'],
   setup(props, { emit }) {
-    const countRange = [...Array(props.totalCount)].map((_, i) => ++i);
+    const countRange = [...Array(props.totalCount)].map((_, i) => i);
     const updateActiveCount = (n: number) => {
       emit('updateActiveCount', n);
     };
@@ -51,5 +51,6 @@ export default defineComponent({
 }
 .carousel-dot {
   margin: 0 4px;
+  cursor: pointer;
 }
 </style>
