@@ -3,14 +3,14 @@
     <div ref="helpRef" class="helplist-slide">
       <help
         v-for="(helpContents, index) in helpList"
-        v-show="index === activeCount"
+        v-show="index === activeHelpOrder"
         :key="index"
         :help-contents="helpContents"
       />
     </div>
     <carousel-dot-list
       :total-count="helpList.length"
-      :active-count="activeCount"
+      :active-count="activeHelpOrder"
       @updateActiveCount="emitUpdateActiveCount"
     />
   </div>
@@ -35,7 +35,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const activeCount = ref(0);
+    const activeHelpOrder = ref(0);
 
     const helpRef = ref<HTMLDivElement>();
 
@@ -47,19 +47,22 @@ export default defineComponent({
       });
       ref.addEventListener('touchend', (event: TouchEvent) => {
         lastX = event.changedTouches[0].pageX;
-        if (lastX < initX && props.helpList.length - 1 > activeCount.value) {
-          activeCount.value++;
+        if (
+          lastX < initX &&
+          props.helpList.length - 1 > activeHelpOrder.value
+        ) {
+          activeHelpOrder.value++;
         } else if (
           lastX > initX &&
-          props.helpList.length - 1 <= activeCount.value
+          props.helpList.length - 1 <= activeHelpOrder.value
         ) {
-          activeCount.value--;
+          activeHelpOrder.value--;
         }
       });
     };
 
     const emitUpdateActiveCount = (value: number) => {
-      activeCount.value = value;
+      activeHelpOrder.value = value;
     };
 
     onMounted(() => {
@@ -70,7 +73,7 @@ export default defineComponent({
 
     return {
       helpRef,
-      activeCount,
+      activeHelpOrder,
       emitUpdateActiveCount,
     };
   },

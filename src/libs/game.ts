@@ -6,8 +6,8 @@ import Ojisan from './ojisan';
 import Kuroashineko from './kuroashineko';
 
 export default class Game extends GameManager {
-  constructor(canvasSize: Size, startPosition: Point) {
-    super('弾幕STG', canvasSize, 60, new Scene());
+  constructor(screenSize: Size, startPosition: Point) {
+    super('弾幕STG', screenSize, 60, new Scene());
     this.currentScene = new Scene([], this.screenCanvas);
     // TODO: 猫ちゃんとおじさん中央揃えのためののサイズベタ書きは直すにゃ
     this.currentPosition = {

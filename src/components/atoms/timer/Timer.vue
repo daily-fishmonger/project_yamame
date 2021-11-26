@@ -18,17 +18,10 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, onMounted, SetupContext } from 'vue';
+import { ref, defineComponent, onMounted } from 'vue';
 export default defineComponent({
   name: 'Timer',
-  props: {
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  emits: ['complete-timer'],
-  setup(props, context: SetupContext) {
+  setup() {
     let sec = ref<number>(60);
     let timerOn = ref<boolean>(false);
     let timerObj = ref<number>(0);
@@ -45,14 +38,11 @@ export default defineComponent({
 
       if (sec.value <= 0) {
         complete();
-        context.emit('complete-timer');
       }
     };
     onMounted((): void => {
       timerObj.value = window.setInterval(() => {
-        if (props.isActive) {
-          count();
-        }
+        count();
       }, 1000);
       timerOn.value = true;
     });
