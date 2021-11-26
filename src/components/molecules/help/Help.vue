@@ -30,21 +30,11 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue';
-import { Props } from '../../story';
-
-type HelpContent = {
-  img: string;
-  title: string;
-  text: string;
-};
+import { HelpContent } from '../../story';
 
 export default defineComponent({
   name: 'Help',
   props: {
-    label: {
-      type: String as PropType<Props['label']>,
-      required: true,
-    },
     helpContents: {
       type: Array as PropType<HelpContent[]>,
       required: true,

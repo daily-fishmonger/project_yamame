@@ -19,3 +19,11 @@ export type IconType =
   | 'twitter';
 
 export type Pages = 'start' | 'result';
+
+export type HelpContent = {
+  img: string;
+  title: string;
+  text: string;
+};
+
+export type HelpPage = HelpContent[];

@@ -4,7 +4,7 @@ import helpFirst from '@/assets/sample.png';
 import helpSecond from '@/assets/sample2.png';
 
 export default {
-  title: 'Molecules/help',
+  title: 'Molecules/Help',
   component: Help,
   args: { label: 'Help' },
   argTypes: {
