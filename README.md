@@ -12,6 +12,22 @@ $ git clone git@github.com:shinonome-inc/project_yamame.git
 $ cd project_yamame
 ```
 
+### ローカルでの開発 (yarnで環境が整っていることが前提)
+パッケージのインストール
+```
+$ yarn
+```
+
+アプリケーションの起動
+```
+$ yarn dev
+```
+
+storybookの起動
+```
+$ yarn storybook
+```
+
 ### コンテナの起動
 ```
 make run
