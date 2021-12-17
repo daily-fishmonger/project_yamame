@@ -31,6 +31,7 @@ export const IconButtonList: Story = (args) => ({
       'restart',
       'resume',
       'twitter',
+      'hamburger',
     ];
     return {
       args,
