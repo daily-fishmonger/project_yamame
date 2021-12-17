@@ -10,13 +10,15 @@ export type Classes = {
 };
 
 export type IconButtonColor = 'primary' | 'secondary' | 'orange';
+export type TextButtonColor = 'blue' | 'purple';
 export type IconType =
   | 'close'
   | 'home'
   | 'pause'
   | 'restart'
   | 'resume'
-  | 'twitter';
+  | 'twitter'
+  | 'hamburger';
 
 export type Pages = 'start' | 'result';
 

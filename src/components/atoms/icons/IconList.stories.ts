@@ -4,6 +4,7 @@ import PauseIcon from './PauseIcon.vue';
 import RestartIcon from './RestartIcon.vue';
 import ResumeIcon from './ResumeIcon.vue';
 import TwitterIcon from './TwitterIcon.vue';
+import HamburgerIcon from './HamburgerIcon.vue';
 import { Meta, Story } from '@storybook/vue3';
 
 export default {
@@ -27,6 +28,7 @@ export const IconList: Story = (args) => ({
     RestartIcon,
     ResumeIcon,
     TwitterIcon,
+    HamburgerIcon,
   },
   setup() {
     return {
@@ -41,6 +43,7 @@ export const IconList: Story = (args) => ({
     <restart-icon @onClick="onClick" v-bind="args" />
     <resume-icon @onClick="onClick" v-bind="args" />
     <twitter-icon @onClick="onClick" v-bind="args" />
+    <hamburger-icon @onClick="onClick" v-bind="args" />
   </div>
   `,
 });

@@ -54,9 +54,11 @@ export default defineComponent({
 <style scoped>
 .icon--black {
   fill: #000;
+  stroke: #000;
 }
 .icon--white {
   fill: #fff;
+  stroke: #fff;
 }
 .icon--small {
   width: 14px;

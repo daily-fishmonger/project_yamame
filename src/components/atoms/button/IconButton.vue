@@ -6,6 +6,7 @@
     <restart-icon v-else-if="iconType === 'restart'" :size="size" />
     <resume-icon v-else-if="iconType === 'resume'" :size="size" />
     <twitter-icon v-else-if="iconType === 'twitter'" :size="size" />
+    <hamburger-icon v-else-if="iconType === 'hamburger'" :size="size" />
   </button>
 </template>
 
@@ -17,6 +18,7 @@ import PauseIcon from '../icons/PauseIcon.vue';
 import RestartIcon from '../icons/RestartIcon.vue';
 import ResumeIcon from '../icons/ResumeIcon.vue';
 import TwitterIcon from '../icons/TwitterIcon.vue';
+import HamburgerIcon from '../icons/HamburgerIcon.vue';
 import { Classes, IconButtonColor, IconType, Props } from '../../story';
 
 export default defineComponent({
@@ -28,6 +30,7 @@ export default defineComponent({
     RestartIcon,
     ResumeIcon,
     TwitterIcon,
+    HamburgerIcon,
   },
   props: {
     size: {
