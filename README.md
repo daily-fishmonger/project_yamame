@@ -22,17 +22,13 @@ $ yarn
 ```
 $ yarn dev
 ```
+[localhost:3000](http://localhost:3000)にアクセスして確認する。
 
 storybookの起動
 ```
 $ yarn storybook
 ```
-
-### コンテナの起動
-```
-make run
-```
-[localhost:8080](http://localhost:8080)にアクセスして起動しているかを確認する.
+[localhost:6006](http://localhost:6006)にアクセスして確認する。
 
 ### リファレンス
 See [Configuration Reference](https://cli.vuejs.org/config/).
